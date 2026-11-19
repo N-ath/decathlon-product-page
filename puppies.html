@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>All puppies · Decathlon Puppies</title>
+  <link rel="stylesheet" href="vitamin/components/bundle.css">
+  <link rel="stylesheet" href="vitamin/tokens.css">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="puppies">
+<div id="site-header"></div>
+
+<main class="page">
+  <nav aria-label="Breadcrumb" class="vtmn-breadcrumb">
+    <ol>
+      <li><span class="vtmx-home-line" aria-hidden="true"></span><a href="puppies-home.html">Puppies</a></li>
+      <li aria-current="page">All puppies</li>
+    </ol>
+  </nav>
+
+  <div class="section-head">
+    <div class="stack gap-1">
+      <h1 class="vtmn-typo_title-2">All puppies</h1>
+      <p class="muted" id="result-count"></p>
+    </div>
+    <div class="vtmn-select_container" style="min-width: 220px;">
+      <label for="sort">Sort by</label>
+      <select id="sort">
+        <option value="new">Youngest first</option>
+        <option value="price-asc">Price: low to high</option>
+        <option value="price-desc">Price: high to low</option>
+        <option value="name">Name A–Z</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="layout-sidebar">
+    <aside class="panel stack gap-5" aria-label="Filters">
+      <div class="section-head"><h2 class="vtmn-typo_title-5">Filters</h2><button class="vtmn-btn vtmn-btn_variant--ghost vtmn-btn_size--small" id="reset">Reset</button></div>
+      <fieldset class="stack gap-2" style="border:0;padding:0;margin:0;">
+        <legend class="vtmn-typo_text-3" style="font-weight:700;margin-bottom:var(--vtmn-spacing_2);">Breed</legend>
+        <div id="breed-filters" class="stack gap-2"></div>
+      </fieldset>
+      <div class="vtmn-divider" role="separator"></div>
+      <fieldset class="stack gap-2" style="border:0;padding:0;margin:0;">
+        <legend class="vtmn-typo_text-3" style="font-weight:700;margin-bottom:var(--vtmn-spacing_2);">Sex</legend>
+        <div><input class="vtmn-radio-button" type="radio" name="sex" id="sex-any" value="" checked><label for="sex-any">Any</label></div>
+        <div><input class="vtmn-radio-button" type="radio" name="sex" id="sex-f" value="Female"><label for="sex-f">Female</label></div>
+        <div><input class="vtmn-radio-button" type="radio" name="sex" id="sex-m" value="Male"><label for="sex-m">Male</label></div>
+      </fieldset>
+      <div class="vtmn-divider" role="separator"></div>
+      <div class="vtmn-select_container">
+        <label for="size">Adult size</label>
+        <select id="size"><option value="">Any size</option><option>Small</option><option>Medium</option><option>Large</option></select>
+      </div>
+      <div class="vtmn-select_container">
+        <label for="sport">Great for</label>
+        <select id="sport"><option value="">Any sport</option></select>
+      </div>
+      <div class="vtmn-toggle vtmn-toggle_size--medium">
+        <div class="vtmn-toggle_switch">
+          <input type="checkbox" id="only-available" role="switch">
+          <span aria-hidden="true"></span>
+        </div>
+        <label for="only-available">Available only</label>
+      </div>
+    </aside>
+
+    <div class="stack gap-5">
+      <div class="row gap-2" id="active-filters"></div>
+      <div class="card-grid" id="grid"></div>
+      <div class="panel empty-state" id="empty" hidden>
+        <span class="feature-icon"><span class="vtmx-search-line" aria-hidden="true"></span></span>
+        <h2 class="vtmn-typo_title-5">No puppy matches these filters</h2>
+        <p class="muted">New litters arrive every week. Try fewer filters or ask us to notify you.</p>
+        <a href="book-a-visit.html" class="vtmn-btn vtmn-btn_variant--secondary">Tell us what you're looking for</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="site-footer"></div>
+</main>
+
+<script src="assets/data.js"></script>
+<script src="assets/site.js"></script>
+<script>
+  const params = new URLSearchParams(location.search);
+  $('#breed-filters').innerHTML = BREEDS.map((b) => `
+    <div><input class="vtmn-checkbox" type="checkbox" id="br-${b.id}" value="${b.id}"${params.get('breed') === b.id ? ' checked' : ''}><label for="br-${b.id}">${b.name}</label></div>`).join('');
+  [...new Set(BREEDS.flatMap((b) => b.sports))].sort().forEach((s) => $('#sport').add(new Option(s, s)));
+  if (params.get('sport')) $('#sport').value = params.get('sport');
+  let query = (params.get('q') || '').trim().toLowerCase();
+
+  function render() {
+    const breeds = $$('#breed-filters input:checked').map((i) => i.value);
+    const sex = $('input[name="sex"]:checked').value;
+    const size = $('#size').value, sport = $('#sport').value;
+    const onlyAvail = $('#only-available').checked;
+    let list = PUPPIES.filter((p) => {
+      const b = breedById(p.breed);
+      if (breeds.length && !breeds.includes(p.breed)) return false;
+      if (sex && p.sex !== sex) return false;
+      if (size && b.size !== size) return false;
+      if (sport && !b.sports.includes(sport)) return false;
+      if (onlyAvail && p.status !== 'available') return false;
+      if (query && ![p.name, b.name, p.color, ...b.sports].join(' ').toLowerCase().includes(query)) return false;
+      return true;
+    });
+    const sorts = { 'new': (a, b) => a.ageWeeks - b.ageWeeks, 'price-asc': (a, b) => a.price - b.price,
+                    'price-desc': (a, b) => b.price - a.price, 'name': (a, b) => a.name.localeCompare(b.name) };
+    list.sort(sorts[$('#sort').value]);
+    $('#grid').innerHTML = list.map(puppyCard).join('');
+    $('#empty').hidden = list.length > 0;
+    $('#result-count').textContent = `${list.length} ${list.length === 1 ? 'puppy' : 'puppies'}${query ? ` for “${query}”` : ''}`;
+    const chips = [...breeds.map((id) => breedById(id).name), sex, size, sport, onlyAvail && 'Available only', query && `“${query}”`].filter(Boolean);
+    $('#active-filters').innerHTML = chips.map((c) => `<span class="vtmn-tag vtmn-tag_variant--brand vtmn-tag_size--small">${c}</span>`).join('');
+  }
+  $$('aside input, aside select, #sort').forEach((el) => el.addEventListener('change', render));
+  $('#reset').addEventListener('click', () => {
+    $$('#breed-filters input').forEach((i) => { i.checked = false; });
+    $('#sex-any').checked = true; $('#size').value = ''; $('#sport').value = ''; $('#only-available').checked = false;
+    query = ''; if ($('#nav-search')) $('#nav-search').value = '';
+    history.replaceState(null, '', 'puppies.html'); render();
+  });
+  render();
+</script>
+</body>
+</html>

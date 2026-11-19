@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Puppy gear · Decathlon Puppies</title>
+  <link rel="stylesheet" href="vitamin/components/bundle.css">
+  <link rel="stylesheet" href="vitamin/tokens.css">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="gear">
+<div id="site-header"></div>
+
+<main class="page">
+  <nav aria-label="Breadcrumb" class="vtmn-breadcrumb">
+    <ol>
+      <li><span class="vtmx-home-line" aria-hidden="true"></span><a href="puppies-home.html">Puppies</a></li>
+      <li aria-current="page">Puppy gear</li>
+    </ol>
+  </nav>
+
+  <section class="banner">
+    <div class="stack gap-4">
+      <h1 class="vtmn-typo_display-3 display-headline">Gear that grows with your dog</h1>
+      <p class="vtmn-typo_text-1 muted">Harnesses, leashes, beds and outdoor kit designed by our teams and tested on real trails.</p>
+    </div>
+    <img src="assets/puppies/brown.svg" alt="">
+  </section>
+
+  <div class="section-head">
+    <div class="row gap-2" id="cat-chips" role="group" aria-label="Filter by category"></div>
+    <span class="muted" id="gear-count"></span>
+  </div>
+  <div class="card-grid" id="gear-grid"></div>
+
+  <section class="newsletter">
+    <div class="stack gap-2" style="flex: 1 1 320px;">
+      <h2 class="vtmn-typo_title-4">Not sure what size?</h2>
+      <p class="vtmn-typo_text-2 muted">Bring your puppy to any store: our team will fit the harness for free.</p>
+    </div>
+    <a href="book-a-visit.html" class="vtmn-btn vtmn-btn_variant--primary">Book a fitting</a>
+  </section>
+
+  <div id="site-footer"></div>
+</main>
+
+<script src="assets/data.js"></script>
+<script src="assets/site.js"></script>
+<script>
+  const cats = ['All', ...new Set(GEAR.map((g) => g.cat))];
+  let current = 'All';
+  function render() {
+    $('#cat-chips').innerHTML = cats.map((c) => `<button class="vtmn-chip vtmn-chip_variant--single-choice" aria-pressed="${c === current}" data-cat="${c}">${c}</button>`).join('');
+    const list = GEAR.filter((g) => current === 'All' || g.cat === current);
+    $('#gear-grid').innerHTML = list.map(gearCard).join('');
+    $('#gear-count').textContent = `${list.length} products`;
+  }
+  $('#cat-chips').addEventListener('click', (e) => { const c = e.target.closest('[data-cat]'); if (c) { current = c.dataset.cat; render(); } });
+  render();
+</script>
+</body>
+</html>

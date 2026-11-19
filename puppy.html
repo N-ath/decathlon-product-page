@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Puppy · Decathlon Puppies</title>
+  <link rel="stylesheet" href="vitamin/components/bundle.css">
+  <link rel="stylesheet" href="vitamin/tokens.css">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="puppies">
+<div id="site-header"></div>
+
+<main class="page">
+  <nav aria-label="Breadcrumb" class="vtmn-breadcrumb">
+    <ol>
+      <li><span class="vtmx-home-line" aria-hidden="true"></span><a href="puppies-home.html">Puppies</a></li>
+      <li><a href="puppies.html">All puppies</a></li>
+      <li><a href="#" id="crumb-breed"></a></li>
+      <li aria-current="page" id="crumb-name"></li>
+    </ol>
+  </nav>
+
+  <section class="hero">
+    <div class="gallery stack gap-3">
+      <div class="gallery-main">
+        <img id="photo" src="" alt="">
+        <div class="gallery-tags" id="photo-tags"></div>
+        <div class="gallery-actions">
+          <button class="vtmn-btn vtmn-btn_variant--secondary vtmn-btn--icon-alone" id="wish-btn" aria-pressed="false">
+            <span class="vtmn-sr-only">Add to favourites</span><span class="vtmx-heart-line" id="wish-icon" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="buybox panel stack gap-5">
+      <div class="stack gap-2">
+        <span class="vtmn-typo_caption-1 muted eyebrow" id="eyebrow"></span>
+        <h1 class="vtmn-typo_title-2" id="name"></h1>
+        <p class="muted" id="subtitle"></p>
+      </div>
+      <div class="row gap-3" style="align-items: center;">
+        <span class="vtmn-price vtmn-price_size--large vtmn-price_variant--accent" id="price"></span>
+        <span class="vtmn-typo_text-3 muted">incl. vaccinations, microchip &amp; starter kit</span>
+      </div>
+      <div class="facts" id="facts"></div>
+
+      <div class="vtmn-divider" role="separator" aria-labelledby="pick-title"><span id="pick-title">Pick-up</span></div>
+      <div class="stack gap-2">
+        <div><input class="vtmn-radio-button" type="radio" name="pickup" id="pick-breeder" checked><label for="pick-breeder">At the breeder's home · free</label></div>
+        <div><input class="vtmn-radio-button" type="radio" name="pickup" id="pick-store"><label for="pick-store">At a partner Decathlon store · free</label></div>
+        <div><input class="vtmn-radio-button" type="radio" name="pickup" id="pick-ship" disabled><label for="pick-ship">Shipping · never: puppies are always handed over in person</label></div>
+      </div>
+
+      <div class="stack gap-3" id="actions"></div>
+
+      <ul class="vtmn-list">
+        <li class="vtmn-list_item-size--small vtmn-list_item--without-divider"><div class="vtmn-list_start-visual"><span class="vtmx-shield-check-line" aria-hidden="true"></span></div><div class="vtmn-list_text"><span>Health guarantee: 12 months for hereditary conditions</span></div></li>
+        <li class="vtmn-list_item-size--small vtmn-list_item--without-divider"><div class="vtmn-list_start-visual"><span class="vtmx-refresh-line" aria-hidden="true"></span></div><div class="vtmn-list_text"><span>Deposit fully refunded if you change your mind before pick-up</span></div></li>
+        <li class="vtmn-list_item-size--small vtmn-list_item--without-divider"><div class="vtmn-list_start-visual"><span class="vtmx-phone-line" aria-hidden="true"></span></div><div class="vtmn-list_text"><span>Lifetime advice line with our canine coaches</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="panel stack gap-5">
+    <ul class="vtmn-tabs" role="tablist" aria-label="About this puppy" id="tabs">
+      <li><button role="tab" id="tab-about" aria-controls="panel-about" aria-selected="true">About</button></li>
+      <li><button role="tab" id="tab-health" aria-controls="panel-health" aria-selected="false" tabindex="-1">Health</button></li>
+      <li><button role="tab" id="tab-breed" aria-controls="panel-breed" aria-selected="false" tabindex="-1">Breed</button></li>
+    </ul>
+    <div role="tabpanel" id="panel-about" aria-labelledby="tab-about" class="stack gap-4">
+      <h2 class="vtmn-typo_display-3 display-headline" id="about-title"></h2>
+      <p class="vtmn-typo_text-1 muted" id="about-text"></p>
+    </div>
+    <div role="tabpanel" id="panel-health" aria-labelledby="tab-health" hidden>
+      <ul class="vtmn-list" style="max-width: 640px;">
+        <li><div class="vtmn-list_start-visual"><span class="vtmx-checkbox-circle-line" aria-hidden="true"></span></div><div class="vtmn-list_text"><span>First vaccinations</span><span>Done at 8 weeks, booster due at 12 weeks</span></div></li>
+        <li><div class="vtmn-list_start-visual"><span class="vtmx-checkbox-circle-line" aria-hidden="true"></span></div><div class="vtmn-list_text"><span>Microchip</span><span>Registered, transferred to you at pick-up</span></div></li>
+        <li><div class="vtmn-list_start-visual"><span class="vtmx-checkbox-circle-line" aria-hidden="true"></span></div><div class="vtmn-list_text"><span>Deworming</span><span>Every 2 weeks since birth</span></div></li>
+        <li><div class="vtmn-list_start-visual"><span class="vtmx-checkbox-circle-line" aria-hidden="true"></span></div><div class="vtmn-list_text"><span>Parents' health tests</span><span>Hips, elbows and eyes screened</span></div></li>
+      </ul>
+    </div>
+    <div role="tabpanel" id="panel-breed" aria-labelledby="tab-breed" class="stack gap-4" hidden></div>
+  </section>
+
+  <section class="stack gap-5" aria-labelledby="siblings-title">
+    <h2 id="siblings-title" class="vtmn-typo_title-4">You might also like</h2>
+    <div class="card-grid" id="siblings"></div>
+  </section>
+
+  <section class="stack gap-5" aria-labelledby="kit-title">
+    <h2 id="kit-title" class="vtmn-typo_title-4">Get ready for the first walk</h2>
+    <div class="card-grid" id="kit"></div>
+  </section>
+
+  <div id="site-footer"></div>
+</main>
+
+<script src="assets/data.js"></script>
+<script src="assets/site.js"></script>
+<script>
+  const p = puppyById(new URLSearchParams(location.search).get('id')) || PUPPIES[0];
+  const b = breedById(p.breed);
+  const reserved = p.status === 'reserved';
+  document.title = `${p.name}, ${b.name} puppy · Decathlon Puppies`;
+  $('#crumb-breed').textContent = b.name; $('#crumb-breed').href = `puppies.html?breed=${b.id}`;
+  $('#crumb-name').textContent = p.name;
+  $('#photo').src = `assets/puppies/${p.img}.svg`; $('#photo').alt = `${p.name}, ${p.color.toLowerCase()} ${b.name} puppy`;
+  $('#photo-tags').innerHTML = (reserved ? '<span class="vtmn-tag vtmn-tag_variant--alert vtmn-tag_size--medium">Reserved</span>' : '<span class="vtmn-tag vtmn-tag_variant--decorative_jade vtmn-tag_size--medium">Available</span>')
+    + (p.badge ? `<span class="vtmn-tag vtmn-tag_variant--brand vtmn-tag_size--medium">${p.badge}</span>` : '');
+  $('#eyebrow').textContent = `${b.name} · ${b.size}`;
+  $('#name').textContent = p.name;
+  $('#subtitle').textContent = `${p.sex} · ${p.ageWeeks} weeks old · ${p.color}`;
+  $('#price').textContent = euro(p.price);
+  $('#facts').innerHTML = [
+    ['Energy', meter(b.energy, 'Energy')], ['Grooming', meter(b.grooming, 'Grooming')],
+    ['With kids', meter(b.kids, 'Good with kids')], ['Flat-friendly', meter(b.apartment, 'Apartment friendly')]
+  ].map(([k, v]) => `<div class="fact"><span class="vtmn-typo_caption-1 muted">${k}</span>${v}</div>`).join('');
+
+  function renderActions() {
+    if (reserved) {
+      $('#actions').innerHTML = `
+        <div class="vtmn-alert vtmn-alert_variant--info" style="position:static;animation:none;max-width:none;">
+          <div class="vtmn-alert_content"><div class="vtmn-alert_content-title">${p.name} has found a family</div>
+          <p class="vtmn-alert_content-description">Another ${b.name} litter is due soon. Book a visit and we'll keep you posted.</p></div></div>
+        <a class="vtmn-btn vtmn-btn_variant--primary vtmn-btn_size--stretched" href="book-a-visit.html?puppy=${p.id}">Join the waiting list</a>`;
+      return;
+    }
+    const inCart = Cart.has('puppy', p.id);
+    $('#actions').innerHTML = `
+      <button class="vtmn-btn vtmn-btn_variant--conversion vtmn-btn_size--stretched vtmn-btn--icon-left" id="reserve"${inCart ? ' disabled' : ''}>
+        <span class="vtmx-${inCart ? 'check' : 'heart'}-line" aria-hidden="true"></span>${inCart ? 'Reserved in your cart' : `Reserve ${p.name} · ${euro(DEPOSIT)} deposit`}
+      </button>
+      <a class="vtmn-btn vtmn-btn_variant--secondary vtmn-btn_size--stretched vtmn-btn--icon-left" href="book-a-visit.html?puppy=${p.id}">
+        <span class="vtmx-calendar-check-line" aria-hidden="true"></span>Book a visit to meet ${p.name}
+      </a>`;
+    $('#reserve')?.addEventListener('click', () => {
+      Cart.add('puppy', p.id); renderActions();
+      toast(`${p.name} is reserved for you · <a href="cart.html" style="color: inherit;">View cart</a>`);
+    });
+  }
+  renderActions();
+
+  $('#about-title').textContent = `Meet ${p.name}`;
+  $('#about-text').textContent = `${p.name} is a ${p.ageWeeks}-week-old ${p.sex.toLowerCase()} ${b.name} with a ${p.color.toLowerCase()} coat. Raised in a family home with the mother and littermates, ${p.sex === 'Male' ? 'he' : 'she'} is used to household noises, gentle handling and short outdoor play sessions. ${b.text}`;
+  $('#panel-breed').innerHTML = `
+    <div class="facts">${[['Adult size', b.size], ['Great for', b.sports.join(', ')]].map(([k, v]) => `<div class="fact"><span class="vtmn-typo_caption-1 muted">${k}</span><strong>${v}</strong></div>`).join('')}</div>
+    <a class="vtmn-link vtmn-link--standalone vtmn-link--icon-along" href="breeds.html#${b.id}">Read the full ${b.name} guide</a>`;
+
+  const others = PUPPIES.filter((x) => x.id !== p.id && (x.breed === p.breed || breedById(x.breed).size === b.size)).slice(0, 4);
+  $('#siblings').innerHTML = others.map(puppyCard).join('');
+  $('#kit').innerHTML = ['starter-kit', 'harness', 'bed', 'ball'].map((id) => gearCard(gearById(id))).join('');
+
+  const tabs = $$('#tabs [role="tab"]');
+  const selectTab = (tab) => tabs.forEach((t) => { const on = t === tab; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; $('#' + t.getAttribute('aria-controls')).hidden = !on; });
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => selectTab(tab));
+    tab.addEventListener('keydown', (e) => { if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return; const n = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length]; selectTab(n); n.focus(); });
+  });
+
+  const favs = () => JSON.parse(localStorage.getItem('favs') || '[]');
+  const syncWish = () => { const on = favs().includes(p.id); $('#wish-btn').setAttribute('aria-pressed', String(on)); $('#wish-icon').className = on ? 'vtmx-heart-fill' : 'vtmx-heart-line'; };
+  $('#wish-btn').addEventListener('click', () => {
+    const f = favs(); const on = f.includes(p.id);
+    localStorage.setItem('favs', JSON.stringify(on ? f.filter((x) => x !== p.id) : [...f, p.id]));
+    syncWish(); toast(on ? `${p.name} removed from favourites` : `${p.name} saved to favourites`);
+  });
+  syncWish();
+</script>
+</body>
+</html>
