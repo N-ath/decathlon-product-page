@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Our breeders · Decathlon Puppies</title>
+  <link rel="stylesheet" href="vitamin/components/bundle.css">
+  <link rel="stylesheet" href="vitamin/tokens.css">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="breeders">
+<div id="site-header"></div>
+
+<main class="page">
+  <nav aria-label="Breadcrumb" class="vtmn-breadcrumb">
+    <ol>
+      <li><span class="vtmx-home-line" aria-hidden="true"></span><a href="puppies-home.html">Puppies</a></li>
+      <li aria-current="page">Our breeders</li>
+    </ol>
+  </nav>
+
+  <section class="banner">
+    <div class="stack gap-4">
+      <h1 class="vtmn-typo_display-3 display-headline">Raised with care, in family homes</h1>
+      <p class="vtmn-typo_text-1 muted">We work with a small network of independent breeders. Each one is visited, audited every year and shares our charter.</p>
+    </div>
+    <img src="assets/puppies/tricolor.svg" alt="">
+  </section>
+
+  <section class="panel stack gap-4" aria-labelledby="charter-title">
+    <h2 id="charter-title" class="vtmn-typo_title-4">Our breeder charter</h2>
+    <div class="feature-grid">
+      <div class="feature"><span class="feature-icon"><span class="vtmx-home-line" aria-hidden="true"></span></span><h3 class="vtmn-typo_title-5">Home-raised</h3><p class="muted">Puppies grow up indoors with their mother, never in cages or farms.</p></div>
+      <div class="feature"><span class="feature-icon"><span class="vtmx-heart-pulse-line" aria-hidden="true"></span></span><h3 class="vtmn-typo_title-5">Health-tested parents</h3><p class="muted">Hips, elbows, eyes and breed-specific DNA tests before every litter.</p></div>
+      <div class="feature"><span class="feature-icon"><span class="vtmx-calendar-date-line" aria-hidden="true"></span></span><h3 class="vtmn-typo_title-5">Limited litters</h3><p class="muted">No more than one litter per mother per year, and a maximum of four in total.</p></div>
+      <div class="feature"><span class="feature-icon"><span class="vtmx-leaf-line" aria-hidden="true"></span></span><h3 class="vtmn-typo_title-5">Early enrichment</h3><p class="muted">Daily handling, sounds, surfaces and outdoor time from 3 weeks.</p></div>
+    </div>
+  </section>
+
+  <section class="stack gap-5" aria-labelledby="list-title">
+    <h2 id="list-title" class="vtmn-typo_title-4">Meet the breeders</h2>
+    <div class="card-grid" id="breeders"></div>
+  </section>
+
+  <section class="stack gap-5" aria-labelledby="reviews-title">
+    <h2 id="reviews-title" class="vtmn-typo_title-4">What families say</h2>
+    <div class="card-grid">
+      <article class="vtmn-card"><div class="vtmn-card_content stack gap-2">
+        <div class="vtmn-rating vtmn-rating_size--small"><span class="vtmn-sr-only">5 out of 5</span><span class="vtmx-star-fill" role="presentation"></span><span class="vtmx-star-fill" role="presentation"></span><span class="vtmx-star-fill" role="presentation"></span><span class="vtmx-star-fill" role="presentation"></span><span class="vtmx-star-fill" role="presentation"></span></div>
+        <h3 class="vtmn-card_content--title">Our hiking buddy</h3>
+        <span class="vtmn-card_content--body">We met Scout twice before taking him home. The coach call helped us plan his first months. Sample review.</span>
+        <span class="vtmn-typo_caption-1 muted">Camille · Border Collie</span>
+      </div></article>
+      <article class="vtmn-card"><div class="vtmn-card_content stack gap-2">
+        <div class="vtmn-rating vtmn-rating_size--small"><span class="vtmn-sr-only">5 out of 5</span><span class="vtmx-star-fill" role="presentation"></span><span class="vtmx-star-fill" role="presentation"></span><span class="vtmx-star-fill" role="presentation"></span><span class="vtmx-star-fill" role="presentation"></span><span class="vtmx-star-fill" role="presentation"></span></div>
+        <h3 class="vtmn-card_content--title">Healthy and confident</h3>
+        <span class="vtmn-card_content--body">Our Labrador arrived calm and already used to the car. The health booklet was complete. Sample review.</span>
+        <span class="vtmn-typo_caption-1 muted">Hugo · Labrador</span>
+      </div></article>
+      <article class="vtmn-card"><div class="vtmn-card_content stack gap-2">
+        <div class="vtmn-rating vtmn-rating_size--small"><span class="vtmn-sr-only">4 out of 5</span><span class="vtmx-star-fill" role="presentation"></span><span class="vtmx-star-fill" role="presentation"></span><span class="vtmx-star-fill" role="presentation"></span><span class="vtmx-star-fill" role="presentation"></span><span class="vtmx-star-line" role="presentation"></span></div>
+        <h3 class="vtmn-card_content--title">Long wait, worth it</h3>
+        <span class="vtmn-card_content--body">We waited three months on the list for a poodle. Communication was great throughout. Sample review.</span>
+        <span class="vtmn-typo_caption-1 muted">Inès · Standard Poodle</span>
+      </div></article>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+</main>
+
+<script src="assets/data.js"></script>
+<script src="assets/site.js"></script>
+<script>
+  const BREEDERS = [
+    { name: 'Les Prés Verts', region: 'Normandy', breeds: ['labrador', 'cocker'], since: 2012, img: 'golden' },
+    { name: 'Ferme du Col', region: 'Savoie', breeds: ['border-collie', 'australian-shepherd'], since: 2009, img: 'merle' },
+    { name: 'La Maison des Boucles', region: 'Loire Valley', breeds: ['poodle'], since: 2016, img: 'cream' },
+    { name: 'Chemin des Truffes', region: 'Dordogne', breeds: ['beagle'], since: 2014, img: 'tricolor' }
+  ];
+  $('#breeders').innerHTML = BREEDERS.map((br) => `
+    <article class="vtmn-card">
+      <div class="vtmn-card_image"><img src="assets/puppies/${br.img}.svg" alt=""></div>
+      <div class="vtmn-card_content stack gap-2">
+        <span class="vtmn-tag vtmn-tag_variant--decorative_jade vtmn-tag_size--small" style="align-self:flex-start;">Audited ${new Date().getFullYear()}</span>
+        <h3 class="vtmn-card_content--title">${br.name}</h3>
+        <span class="vtmn-card_content--body muted"><span class="vtmx-map-pin-line" aria-hidden="true"></span> ${br.region} · breeding since ${br.since}</span>
+        <div class="row gap-2">${br.breeds.map((id) => `<a class="vtmn-link" href="puppies.html?breed=${id}">${breedById(id).name}</a>`).join(' · ')}</div>
+      </div>
+    </article>`).join('');
+</script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your cart · Decathlon Puppies</title>
+  <link rel="stylesheet" href="vitamin/components/bundle.css">
+  <link rel="stylesheet" href="vitamin/tokens.css">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="cart">
+<div id="site-header"></div>
+
+<main class="page">
+  <nav aria-label="Breadcrumb" class="vtmn-breadcrumb">
+    <ol>
+      <li><span class="vtmx-home-line" aria-hidden="true"></span><a href="puppies-home.html">Puppies</a></li>
+      <li aria-current="page">Cart</li>
+    </ol>
+  </nav>
+
+  <h1 class="vtmn-typo_title-2">Your cart</h1>
+
+  <div class="layout-sidebar" id="cart-layout">
+    <div class="stack gap-5" id="cart-main"></div>
+    <aside class="panel stack gap-4" id="summary" aria-labelledby="sum-title"></aside>
+  </div>
+
+  <div class="panel empty-state" id="cart-empty" hidden>
+    <span class="feature-icon"><span class="vtmx-shopping-cart-line" aria-hidden="true"></span></span>
+    <h2 class="vtmn-typo_title-5">Your cart is empty</h2>
+    <p class="muted">Find a puppy to reserve, or gear for your dog.</p>
+    <div class="row gap-3" style="justify-content:center;">
+      <a href="puppies.html" class="vtmn-btn vtmn-btn_variant--primary">See puppies</a>
+      <a href="puppy-gear.html" class="vtmn-btn vtmn-btn_variant--secondary">Shop gear</a>
+    </div>
+  </div>
+
+  <div class="vtmn-modal" id="confirm" role="dialog" aria-modal="true" aria-labelledby="confirm-title" hidden>
+    <div class="vtmn-modal_content">
+      <div class="vtmn-modal_content_title">
+        <span id="confirm-title" class="vtmn-modal_content_title--text">Order confirmed</span>
+        <button class="vtmn-btn vtmn-btn_variant--ghost vtmn-btn--icon-alone" data-close-modal><span class="vtmx-close-line" aria-hidden="true"></span><span class="vtmn-sr-only">Close</span></button>
+      </div>
+      <div class="vtmn-modal_content_body"><p class="vtmn-modal_content_body--text" id="confirm-text"></p></div>
+      <div class="vtmn-modal_content_actions">
+        <a class="vtmn-btn vtmn-btn_variant--secondary" href="care-guide.html">Read the care guide</a>
+        <a class="vtmn-btn vtmn-btn_variant--primary" href="book-a-visit.html">Book my visit</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="site-footer"></div>
+</main>
+
+<script src="assets/data.js"></script>
+<script src="assets/site.js"></script>
+<script>
+  function render() {
+    const items = Cart.get();
+    const puppies = items.filter((i) => i.type === 'puppy').map((i) => ({ ...i, p: puppyById(i.id) })).filter((i) => i.p);
+    const gear = items.filter((i) => i.type === 'gear').map((i) => ({ ...i, g: gearById(i.id) })).filter((i) => i.g);
+    $('#cart-layout').hidden = !(puppies.length || gear.length);
+    $('#cart-empty').hidden = !$('#cart-layout').hidden;
+    if ($('#cart-layout').hidden) return;
+
+    const puppyHtml = puppies.length ? `
+      <section class="panel stack gap-4" aria-labelledby="res-title">
+        <h2 id="res-title" class="vtmn-typo_title-4">Puppy reservations</h2>
+        ${puppies.map(({ p }) => `
+          <div class="cart-line">
+            <img src="assets/puppies/${p.img}.svg" alt="">
+            <div class="stack gap-1">
+              <a class="vtmn-link vtmn-typo_text-1" href="puppy.html?id=${p.id}" style="font-weight:700;">${p.name} · ${breedById(p.breed).name}</a>
+              <span class="muted">${p.sex} · ${p.ageWeeks} weeks · full price ${euro(p.price)}</span>
+              <span class="vtmn-typo_caption-1 muted">Balance of ${euro(p.price - DEPOSIT)} paid at pick-up</span>
+            </div>
+            <span class="vtmn-price vtmn-price_size--small vtmn-price_variant--default">${euro(DEPOSIT)}</span>
+            <button class="vtmn-btn vtmn-btn_variant--ghost vtmn-btn--icon-alone" data-remove="puppy:${p.id}"><span class="vtmn-sr-only">Remove ${p.name}</span><span class="vtmx-delete-bin-line" aria-hidden="true"></span></button>
+          </div>`).join('<div class="vtmn-divider" role="separator"></div>')}
+      </section>` : '';
+    const gearHtml = gear.length ? `
+      <section class="panel stack gap-4" aria-labelledby="gear-title">
+        <h2 id="gear-title" class="vtmn-typo_title-4">Gear</h2>
+        ${gear.map(({ g, qty }) => `
+          <div class="cart-line">
+            <img src="assets/product-placeholder.svg" alt="">
+            <div class="stack gap-1"><strong>${g.name}</strong><span class="muted">${euro(g.price)} each</span></div>
+            <div class="vtmn-quantity">
+              <label for="q-${g.id}" class="vtmn-sr-only">Quantity of ${g.name}</label>
+              <div class="vtmn-quantity_content">
+                <button class="vtmn-btn vtmn-btn_variant--secondary vtmn-btn--icon-alone" data-qty="${g.id}:-1"><span class="vtmn-sr-only">Remove one</span><span class="vtmx-subtract-line" aria-hidden="true"></span></button>
+                <input type="number" id="q-${g.id}" min="1" value="${qty}" readonly>
+                <button class="vtmn-btn vtmn-btn_variant--secondary vtmn-btn--icon-alone" data-qty="${g.id}:1"><span class="vtmn-sr-only">Add one</span><span class="vtmx-add-line" aria-hidden="true"></span></button>
+              </div>
+            </div>
+            <span class="vtmn-price vtmn-price_size--small vtmn-price_variant--default">${euro(g.price * qty)}</span>
+            <button class="vtmn-btn vtmn-btn_variant--ghost vtmn-btn--icon-alone" data-remove="gear:${g.id}"><span class="vtmn-sr-only">Remove ${g.name}</span><span class="vtmx-delete-bin-line" aria-hidden="true"></span></button>
+          </div>`).join('<div class="vtmn-divider" role="separator"></div>')}
+      </section>` : '';
+    $('#cart-main').innerHTML = puppyHtml + gearHtml;
+
+    const depositTotal = puppies.length * DEPOSIT;
+    const gearTotal = gear.reduce((s, { g, qty }) => s + g.price * qty, 0);
+    const shipping = gear.length && gearTotal < 50 ? 4.99 : 0;
+    const total = depositTotal + gearTotal + shipping;
+    $('#summary').innerHTML = `
+      <h2 id="sum-title" class="vtmn-typo_title-5">Summary</h2>
+      <div class="stack gap-3">
+        ${puppies.length ? `<div class="section-head"><span>Reservation deposits (${puppies.length})</span><strong style="white-space:nowrap;">${euro(depositTotal)}</strong></div>` : ''}
+        ${gear.length ? `<div class="section-head"><span>Gear</span><strong style="white-space:nowrap;">${euro(gearTotal)}</strong></div>
+        <div class="section-head"><span>Gear delivery</span><strong style="white-space:nowrap;">${shipping ? euro(shipping) : 'Free'}</strong></div>` : ''}
+      </div>
+      <div class="vtmn-divider" role="separator"></div>
+      <div class="section-head"><strong>Pay today</strong><span class="vtmn-price vtmn-price_size--medium vtmn-price_variant--accent">${euro(total)}</span></div>
+      ${puppies.length ? '<p class="vtmn-typo_caption-1 muted">Deposits are fully refundable until pick-up. Puppies are handed over in person only.</p>' : ''}
+      <div><input class="vtmn-checkbox" type="checkbox" id="agree"><label for="agree"><span>I accept the <a class="vtmn-link" href="how-it-works.html#faq">reservation terms</a></span></label></div>
+      <button class="vtmn-btn vtmn-btn_variant--conversion vtmn-btn_size--stretched" id="checkout">Confirm and pay</button>`;
+  }
+
+  document.addEventListener('click', (e) => {
+    const rm = e.target.closest('[data-remove]');
+    if (rm) { const [t, id] = rm.dataset.remove.split(':'); Cart.remove(t, id); render(); toast('Removed from your cart'); return; }
+    const q = e.target.closest('[data-qty]');
+    if (q) { const [id, d] = q.dataset.qty.split(':'); const line = Cart.get().find((i) => i.type === 'gear' && i.id === id); Cart.setQty('gear', id, Math.max(1, line.qty + +d)); render(); return; }
+    if (e.target.closest('#checkout')) {
+      if (!$('#agree').checked) { toast('Please accept the reservation terms'); return; }
+      const names = Cart.get().filter((i) => i.type === 'puppy').map((i) => puppyById(i.id)?.name).filter(Boolean);
+      $('#confirm-text').textContent = names.length
+        ? `${names.join(' and ')} ${names.length > 1 ? 'are' : 'is'} reserved for you for 14 days. A canine coach will call you within 48 hours to plan your visit. (Demo: no payment was taken.)`
+        : 'Your gear is on its way. (Demo: no payment was taken.)';
+      $('#confirm').hidden = false; Cart.clear(); render();
+    }
+    if (e.target.closest('[data-close-modal]')) $('#confirm').hidden = true;
+  });
+  render();
+</script>
+</body>
+</html>

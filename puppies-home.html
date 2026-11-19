@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Decathlon Puppies · Sporty companions for every adventure</title>
+  <link rel="stylesheet" href="vitamin/components/bundle.css">
+  <link rel="stylesheet" href="vitamin/tokens.css">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="home">
+<div id="site-header"></div>
+
+<main class="page">
+  <section class="banner">
+    <div class="stack gap-5">
+      <span class="vtmn-typo_caption-1 eyebrow">New at Decathlon</span>
+      <h1 class="vtmn-typo_display-2 display-headline">Your next training partner has four paws</h1>
+      <p class="vtmn-typo_text-1 muted">Healthy, vet-checked puppies from trusted breeders, matched to your sport and lifestyle. Meet them in store before you take them home.</p>
+      <div class="row gap-3">
+        <a href="puppies.html" class="vtmn-btn vtmn-btn_variant--conversion vtmn-btn--icon-right">See all puppies<span class="vtmx-arrow-right-line" aria-hidden="true"></span></a>
+        <a href="breeds.html" class="vtmn-btn vtmn-btn_variant--secondary-reversed">Find your breed</a>
+      </div>
+    </div>
+    <img src="assets/puppies/golden.svg" alt="Golden Labrador puppy">
+  </section>
+
+  <section class="feature-grid" aria-label="Why choose us">
+    <div class="panel feature"><span class="feature-icon"><span class="vtmx-shield-check-line" aria-hidden="true"></span></span><h2 class="vtmn-typo_title-5">Vet-checked</h2><p class="muted">Every puppy is examined, vaccinated, dewormed and microchipped before leaving.</p></div>
+    <div class="panel feature"><span class="feature-icon"><span class="vtmx-heart-line" aria-hidden="true"></span></span><h2 class="vtmn-typo_title-5">Ethical breeders</h2><p class="muted">We visit every breeder. Puppies grow up with their mother, in a family home.</p></div>
+    <div class="panel feature"><span class="feature-icon"><span class="vtmx-calendar-check-line" aria-hidden="true"></span></span><h2 class="vtmn-typo_title-5">Meet first</h2><p class="muted">Book a free visit. You only commit once you've met your puppy in person.</p></div>
+    <div class="panel feature"><span class="feature-icon"><span class="vtmx-gift-line" aria-hidden="true"></span></span><h2 class="vtmn-typo_title-5">Starter kit included</h2><p class="muted">Harness, leash, bowls and toy: everything for the first walks together.</p></div>
+  </section>
+
+  <section class="stack gap-5" aria-labelledby="new-title">
+    <div class="section-head">
+      <h2 id="new-title" class="vtmn-typo_title-4">Just arrived</h2>
+      <a href="puppies.html" class="vtmn-link vtmn-link--standalone vtmn-link--icon-along">All puppies</a>
+    </div>
+    <div class="card-grid" id="new-puppies"></div>
+  </section>
+
+  <section class="stack gap-5" aria-labelledby="sport-title">
+    <h2 id="sport-title" class="vtmn-typo_title-4">Find a puppy for your sport</h2>
+    <div class="row gap-2" id="sport-chips"></div>
+  </section>
+
+  <section class="panel stack gap-5" aria-labelledby="steps-title">
+    <h2 id="steps-title" class="vtmn-typo_title-4">From first look to first walk</h2>
+    <ol class="steps">
+      <li><h3 class="vtmn-typo_title-5">Choose</h3><p class="muted">Browse puppies and read about each breed's needs.</p></li>
+      <li><h3 class="vtmn-typo_title-5">Reserve</h3><p class="muted">Hold your puppy with a refundable 200 € deposit.</p></li>
+      <li><h3 class="vtmn-typo_title-5">Meet</h3><p class="muted">Visit the breeder or a partner store with your family.</p></li>
+      <li><h3 class="vtmn-typo_title-5">Go home</h3><p class="muted">Pick up your puppy with its health booklet and starter kit.</p></li>
+    </ol>
+    <a href="how-it-works.html" class="vtmn-link vtmn-link--standalone vtmn-link--icon-along">How it works in detail</a>
+  </section>
+
+  <section class="stack gap-5" aria-labelledby="gear-title">
+    <div class="section-head">
+      <h2 id="gear-title" class="vtmn-typo_title-4">Gear for puppy's first adventures</h2>
+      <a href="puppy-gear.html" class="vtmn-link vtmn-link--standalone vtmn-link--icon-along">All puppy gear</a>
+    </div>
+    <div class="card-grid" id="home-gear"></div>
+  </section>
+
+  <div id="site-footer"></div>
+</main>
+
+<script src="assets/data.js"></script>
+<script src="assets/site.js"></script>
+<script>
+  $('#new-puppies').innerHTML = PUPPIES.filter((p) => p.status === 'available').slice(0, 4).map(puppyCard).join('');
+  $('#home-gear').innerHTML = GEAR.slice(0, 4).map(gearCard).join('');
+  const sports = [...new Set(BREEDS.flatMap((b) => b.sports))].sort();
+  $('#sport-chips').innerHTML = sports.map((s) => `<a class="vtmn-chip vtmn-chip_variant--action" href="puppies.html?sport=${encodeURIComponent(s)}" style="text-decoration:none;">${s}</a>`).join('');
+</script>
+</body>
+</html>

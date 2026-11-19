@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Book a visit · Decathlon Puppies</title>
+  <link rel="stylesheet" href="vitamin/components/bundle.css">
+  <link rel="stylesheet" href="vitamin/tokens.css">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="visit">
+<div id="site-header"></div>
+
+<main class="page">
+  <nav aria-label="Breadcrumb" class="vtmn-breadcrumb">
+    <ol>
+      <li><span class="vtmx-home-line" aria-hidden="true"></span><a href="puppies-home.html">Puppies</a></li>
+      <li aria-current="page">Book a visit</li>
+    </ol>
+  </nav>
+
+  <div class="layout-sidebar">
+    <div class="panel stack gap-5">
+      <div class="stack gap-2">
+        <h1 class="vtmn-typo_title-2">Book a visit</h1>
+        <p class="muted">Meet a puppy, ask our canine coaches anything, or get a harness fitted. Visits are free and last about 45 minutes.</p>
+      </div>
+      <form id="visit-form" class="stack gap-5" novalidate>
+        <div class="vtmn-select_container">
+          <label for="v-puppy">Which puppy would you like to meet?</label>
+          <select id="v-puppy"><option value="">No puppy yet: I'd like advice</option></select>
+        </div>
+        <fieldset class="stack gap-2" style="border:0;padding:0;margin:0;">
+          <legend class="vtmn-typo_text-3" style="font-weight:700;margin-bottom:var(--vtmn-spacing_2);">Where?</legend>
+          <div><input class="vtmn-radio-button" type="radio" name="where" id="w-breeder" checked><label for="w-breeder">At the breeder's home</label></div>
+          <div><input class="vtmn-radio-button" type="radio" name="where" id="w-store"><label for="w-store">In a partner Decathlon store</label></div>
+          <div><input class="vtmn-radio-button" type="radio" name="where" id="w-video"><label for="w-video">Video call first</label></div>
+        </fieldset>
+        <div class="form-grid">
+          <div>
+            <label class="vtmn-text-input_label" for="v-date">Preferred date</label>
+            <div class="vtmn-text-input_container"><input type="date" class="vtmn-text-input" id="v-date" required></div>
+          </div>
+          <div class="vtmn-select_container">
+            <label for="v-time">Time slot</label>
+            <select id="v-time"><option>Morning · 9:00–12:00</option><option>Afternoon · 14:00–17:00</option><option>Evening · 17:00–19:00</option></select>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div>
+            <label class="vtmn-text-input_label" for="v-name">Full name</label>
+            <div class="vtmn-text-input_container"><input type="text" class="vtmn-text-input" id="v-name" required autocomplete="name"></div>
+            <p class="vtmn-text-input_helper-text" id="v-name-err" hidden>Please enter your name</p>
+          </div>
+          <div>
+            <label class="vtmn-text-input_label" for="v-email">Email</label>
+            <div class="vtmn-text-input_container"><input type="email" class="vtmn-text-input" id="v-email" required autocomplete="email" placeholder="you@example.com"><span class="vtmx-mail-line" aria-hidden="true"></span></div>
+            <p class="vtmn-text-input_helper-text" id="v-email-err" hidden>Please enter a valid email</p>
+          </div>
+          <div>
+            <label class="vtmn-text-input_label" for="v-phone">Phone (optional)</label>
+            <div class="vtmn-text-input_container"><input type="tel" class="vtmn-text-input" id="v-phone" autocomplete="tel"><span class="vtmx-phone-line" aria-hidden="true"></span></div>
+          </div>
+        </div>
+        <div>
+          <label class="vtmn-text-input_label" for="v-msg">Tell us about your home and sport habits</label>
+          <textarea class="vtmn-text-input" id="v-msg" placeholder="e.g. House with garden, I hike every weekend, two kids aged 6 and 9"></textarea>
+        </div>
+        <div>
+          <input class="vtmn-checkbox" type="checkbox" id="v-commit">
+          <label for="v-commit">I understand a dog needs daily exercise, care and attention for 12 to 15 years</label>
+        </div>
+        <button type="submit" class="vtmn-btn vtmn-btn_variant--conversion vtmn-btn--icon-left" style="align-self:flex-start;"><span class="vtmx-calendar-check-line" aria-hidden="true"></span>Request my visit</button>
+      </form>
+      <div class="vtmn-alert vtmn-alert_variant--success" id="visit-ok" hidden style="position:static;max-width:none;" tabindex="-1">
+        <div class="vtmn-alert_content"><div class="vtmn-alert_content-title">Visit requested</div>
+        <p class="vtmn-alert_content-description" id="visit-ok-text"></p></div>
+      </div>
+    </div>
+
+    <aside class="stack gap-5">
+      <div class="panel stack gap-3" id="puppy-preview" hidden></div>
+      <div class="panel stack gap-3">
+        <h2 class="vtmn-typo_title-5">Talk to a coach</h2>
+        <ul class="vtmn-list">
+          <li class="vtmn-list_item-size--small vtmn-list_item--without-divider"><div class="vtmn-list_start-visual"><span class="vtmx-phone-line" aria-hidden="true"></span></div><div class="vtmn-list_text"><span>[PHONE NUMBER]</span><span>Mon–Sat, 9:00–19:00</span></div></li>
+          <li class="vtmn-list_item-size--small vtmn-list_item--without-divider"><div class="vtmn-list_start-visual"><span class="vtmx-mail-line" aria-hidden="true"></span></div><div class="vtmn-list_text"><span>[CONTACT EMAIL]</span><span>Answer within 24 h</span></div></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <div id="site-footer"></div>
+</main>
+
+<script src="assets/data.js"></script>
+<script src="assets/site.js"></script>
+<script>
+  const pre = new URLSearchParams(location.search).get('puppy');
+  PUPPIES.forEach((p) => $('#v-puppy').add(new Option(`${p.name} · ${breedById(p.breed).name}${p.status === 'reserved' ? ' (waiting list)' : ''}`, p.id)));
+  if (pre && puppyById(pre)) $('#v-puppy').value = pre;
+  const tomorrow = new Date(Date.now() + 864e5).toISOString().slice(0, 10);
+  $('#v-date').min = tomorrow; $('#v-date').value = tomorrow;
+
+  function preview() {
+    const p = puppyById($('#v-puppy').value);
+    $('#puppy-preview').hidden = !p;
+    if (p) $('#puppy-preview').innerHTML = `<img src="assets/puppies/${p.img}.svg" alt="" style="width:100%;border-radius:var(--vtmn-radius_200);">
+      <h2 class="vtmn-typo_title-5">${p.name}</h2><p class="muted">${breedById(p.breed).name} · ${p.sex} · ${p.ageWeeks} weeks</p>
+      <a class="vtmn-link vtmn-link--standalone" href="puppy.html?id=${p.id}">View profile</a>`;
+  }
+  $('#v-puppy').addEventListener('change', preview); preview();
+
+  $('#visit-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = $('#v-name').value.trim(), email = $('#v-email').value.trim();
+    const okName = !!name, okEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    $('#v-name').classList.toggle('vtmn-text-input--error', !okName); $('#v-name-err').hidden = okName;
+    $('#v-email').classList.toggle('vtmn-text-input--error', !okEmail); $('#v-email-err').hidden = okEmail;
+    if (!$('#v-commit').checked) { toast('Please confirm you are ready for the commitment'); return; }
+    if (!okName || !okEmail) return;
+    const p = puppyById($('#v-puppy').value);
+    const date = new Date($('#v-date').value).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+    $('#visit-ok-text').textContent = `Thanks ${name}! We'll confirm your visit${p ? ` to meet ${p.name}` : ''} on ${date} (${$('#v-time').value.split(' · ')[0].toLowerCase()}) by email at ${email}.`;
+    $('#visit-form').hidden = true; $('#visit-ok').hidden = false; $('#visit-ok').focus();
+  });
+</script>
+</body>
+</html>

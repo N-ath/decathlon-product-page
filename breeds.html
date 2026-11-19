@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Breed guide · Decathlon Puppies</title>
+  <link rel="stylesheet" href="vitamin/components/bundle.css">
+  <link rel="stylesheet" href="vitamin/tokens.css">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="breeds">
+<div id="site-header"></div>
+
+<main class="page">
+  <nav aria-label="Breadcrumb" class="vtmn-breadcrumb">
+    <ol>
+      <li><span class="vtmx-home-line" aria-hidden="true"></span><a href="puppies-home.html">Puppies</a></li>
+      <li aria-current="page">Breed guide</li>
+    </ol>
+  </nav>
+
+  <div class="stack gap-2">
+    <h1 class="vtmn-typo_title-2">Breed guide</h1>
+    <p class="vtmn-typo_text-1 muted">Every breed has its own rhythm. Compare energy, grooming and family life to find the one that fits your days.</p>
+  </div>
+
+  <section class="panel stack gap-4" aria-labelledby="quiz-title">
+    <h2 id="quiz-title" class="vtmn-typo_title-4">Quick match</h2>
+    <div class="form-grid">
+      <div class="vtmn-select_container"><label for="q-activity">How active are you?</label>
+        <select id="q-activity"><option value="3">A daily walk is enough</option><option value="4" selected>I train a few times a week</option><option value="5">I'm outdoors every day</option></select></div>
+      <div class="vtmn-select_container"><label for="q-home">Where do you live?</label>
+        <select id="q-home"><option value="flat">Apartment</option><option value="house" selected>House with a garden</option></select></div>
+      <div class="vtmn-select_container"><label for="q-kids">Children at home?</label>
+        <select id="q-kids"><option value="no">No</option><option value="yes" selected>Yes</option></select></div>
+    </div>
+    <div class="row gap-3" style="align-items:center;">
+      <button class="vtmn-btn vtmn-btn_variant--primary" id="match">Find my match</button>
+      <p class="vtmn-typo_text-2" id="match-result" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section class="stack gap-5" id="breed-list"></section>
+
+  <div id="site-footer"></div>
+</main>
+
+<script src="assets/data.js"></script>
+<script src="assets/site.js"></script>
+<script>
+  $('#breed-list').innerHTML = BREEDS.map((b) => {
+    const n = PUPPIES.filter((p) => p.breed === b.id && p.status === 'available').length;
+    return `
+    <article class="panel breed-row" id="${b.id}">
+      <img src="assets/puppies/${b.img}.svg" alt="${b.name} puppy">
+      <div class="stack gap-4">
+        <div class="section-head">
+          <h2 class="vtmn-typo_title-4">${b.name}</h2>
+          <span class="vtmn-tag vtmn-tag_variant--decorative_gravel vtmn-tag_size--medium">${b.size}</span>
+        </div>
+        <p class="muted">${b.text}</p>
+        <div class="facts">
+          <div class="fact"><span class="vtmn-typo_caption-1 muted">Energy</span>${meter(b.energy, 'Energy')}</div>
+          <div class="fact"><span class="vtmn-typo_caption-1 muted">Grooming</span>${meter(b.grooming, 'Grooming')}</div>
+          <div class="fact"><span class="vtmn-typo_caption-1 muted">With kids</span>${meter(b.kids, 'Good with kids')}</div>
+          <div class="fact"><span class="vtmn-typo_caption-1 muted">Flat-friendly</span>${meter(b.apartment, 'Apartment friendly')}</div>
+        </div>
+        <div class="row gap-2">${b.sports.map((s) => `<span class="vtmn-tag vtmn-tag_variant--decorative_cobalt vtmn-tag_size--small">${s}</span>`).join('')}</div>
+        <a class="vtmn-btn vtmn-btn_variant--${n ? 'primary' : 'secondary'} vtmn-btn--icon-right" style="align-self:flex-start;" href="puppies.html?breed=${b.id}">
+          ${n ? `See ${n} available ${n === 1 ? 'puppy' : 'puppies'}` : 'Join the waiting list'}<span class="vtmx-arrow-right-line" aria-hidden="true"></span></a>
+      </div>
+    </article>`;
+  }).join('');
+
+  $('#match').addEventListener('click', () => {
+    const act = +$('#q-activity').value, flat = $('#q-home').value === 'flat', kids = $('#q-kids').value === 'yes';
+    const score = (b) => -Math.abs(b.energy - act) * 2 + (flat ? b.apartment : 3) + (kids ? b.kids : 3);
+    const best = [...BREEDS].sort((a, b) => score(b) - score(a))[0];
+    $('#match-result').innerHTML = `Your best match: <a class="vtmn-link" href="#${best.id}">${best.name}</a>`;
+  });
+</script>
+</body>
+</html>

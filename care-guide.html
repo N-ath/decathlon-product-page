@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Puppy care guide · Decathlon Puppies</title>
+  <link rel="stylesheet" href="vitamin/components/bundle.css">
+  <link rel="stylesheet" href="vitamin/tokens.css">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="care">
+<div id="site-header"></div>
+
+<main class="page">
+  <nav aria-label="Breadcrumb" class="vtmn-breadcrumb">
+    <ol>
+      <li><span class="vtmx-home-line" aria-hidden="true"></span><a href="puppies-home.html">Puppies</a></li>
+      <li aria-current="page">Care guide</li>
+    </ol>
+  </nav>
+
+  <div class="stack gap-2">
+    <h1 class="vtmn-typo_title-2">Puppy care guide</h1>
+    <p class="vtmn-typo_text-1 muted">Everything you need for the first months, from the first night to the first trail.</p>
+  </div>
+
+  <section class="panel stack gap-5">
+    <ul class="vtmn-tabs" role="tablist" aria-label="Puppy age" id="tabs">
+      <li><button role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true">First week</button></li>
+      <li><button role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" tabindex="-1">2 to 4 months</button></li>
+      <li><button role="tab" id="tab-3" aria-controls="panel-3" aria-selected="false" tabindex="-1">4 to 12 months</button></li>
+    </ul>
+    <div role="tabpanel" id="panel-1" aria-labelledby="tab-1" class="stack gap-4">
+      <h2 class="vtmn-typo_display-3 display-headline">Settling in</h2>
+      <ul class="vtmn-list" style="max-width: 720px;">
+        <li><div class="vtmn-list_start-visual"><span class="vtmx-home-line" aria-hidden="true"></span></div><div class="vtmn-list_text"><span>A quiet corner</span><span>Set up the bed in a calm spot, close to where you sleep for the first nights.</span></div></li>
+        <li><div class="vtmn-list_start-visual"><span class="vtmx-time-line" aria-hidden="true"></span></div><div class="vtmn-list_text"><span>Routine</span><span>Same times for meals, naps and toilet breaks. Puppies sleep 18 to 20 hours a day.</span></div></li>
+        <li><div class="vtmn-list_start-visual"><span class="vtmx-heart-line" aria-hidden="true"></span></div><div class="vtmn-list_text"><span>Gentle introductions</span><span>Keep visitors to a minimum and let your puppy come to people on its own terms.</span></div></li>
+      </ul>
+    </div>
+    <div role="tabpanel" id="panel-2" aria-labelledby="tab-2" class="stack gap-4" hidden>
+      <h2 class="vtmn-typo_display-3 display-headline">Socialise &amp; learn</h2>
+      <ul class="vtmn-list" style="max-width: 720px;">
+        <li><div class="vtmn-list_start-visual"><span class="vtmx-shield-check-line" aria-hidden="true"></span></div><div class="vtmn-list_text"><span>Vaccination boosters</span><span>Booster at 12 weeks, then rabies as required locally. Ask your vet.</span></div></li>
+        <li><div class="vtmn-list_start-visual"><span class="vtmx-user-line" aria-hidden="true"></span></div><div class="vtmn-list_text"><span>Meet the world</span><span>New sounds, surfaces, people and calm dogs, a little every day.</span></div></li>
+        <li><div class="vtmn-list_start-visual"><span class="vtmx-star-line" aria-hidden="true"></span></div><div class="vtmn-list_text"><span>Basic cues</span><span>Name, sit, recall. Short 5-minute sessions with rewards work best.</span></div></li>
+      </ul>
+    </div>
+    <div role="tabpanel" id="panel-3" aria-labelledby="tab-3" class="stack gap-4" hidden>
+      <h2 class="vtmn-typo_display-3 display-headline">Building up</h2>
+      <ul class="vtmn-list" style="max-width: 720px;">
+        <li><div class="vtmn-list_start-visual"><span class="vtmx-map-pin-line" aria-hidden="true"></span></div><div class="vtmn-list_text"><span>Walks</span><span>Rule of thumb: 5 minutes of walking per month of age, twice a day.</span></div></li>
+        <li><div class="vtmn-list_start-visual"><span class="vtmx-information-line" aria-hidden="true"></span></div><div class="vtmn-list_text"><span>No running yet</span><span>Canicross and long runs wait until growth is complete (12 to 18 months).</span></div></li>
+        <li><div class="vtmn-list_start-visual"><span class="vtmx-leaf-line" aria-hidden="true"></span></div><div class="vtmn-list_text"><span>Swimming</span><span>A great low-impact sport. Start in shallow, calm water with a dog life jacket.</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="panel stack gap-5" aria-labelledby="checklist-title">
+    <div class="section-head">
+      <h2 id="checklist-title" class="vtmn-typo_title-4">Before pick-up checklist</h2>
+      <span class="muted" id="check-count"></span>
+    </div>
+    <div class="vtmn-progressbar_container vtmn-progressbar_variant--linear" role="progressbar" aria-labelledby="checklist-title" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="check-bar">
+      <svg><line class="vtmn-progressbar_indicator" x1="0" x2="100%" y1="50%" y2="50%" id="check-line" style="--vtmn-progressbar_progress-transform: translateX(-100%) scale(1);"></line></svg>
+    </div>
+    <div class="form-grid" id="checklist"></div>
+  </section>
+
+  <section class="stack gap-5" aria-labelledby="essentials-title">
+    <h2 id="essentials-title" class="vtmn-typo_title-4">The essentials</h2>
+    <div class="card-grid" id="essentials"></div>
+  </section>
+
+  <div id="site-footer"></div>
+</main>
+
+<script src="assets/data.js"></script>
+<script src="assets/site.js"></script>
+<script>
+  const tabs = $$('#tabs [role="tab"]');
+  const selectTab = (tab) => tabs.forEach((t) => { const on = t === tab; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; $('#' + t.getAttribute('aria-controls')).hidden = !on; });
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => selectTab(tab));
+    tab.addEventListener('keydown', (e) => { if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return; const n = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length]; selectTab(n); n.focus(); });
+  });
+
+  const ITEMS = ['Book a first vet appointment', 'Buy a bed and a crate', 'Puppy-proof cables and plants', 'Choose a food (same as the breeder at first)',
+                 'Get a harness and leash', 'Find a puppy class nearby', 'Register with pet insurance', 'Plan a week off for the arrival'];
+  const saved = JSON.parse(localStorage.getItem('checklist') || '[]');
+  $('#checklist').innerHTML = ITEMS.map((t, i) => `<div><input class="vtmn-checkbox" type="checkbox" id="c${i}"${saved.includes(i) ? ' checked' : ''}><label for="c${i}">${t}</label></div>`).join('');
+  function update() {
+    const done = $$('#checklist input').map((el, i) => (el.checked ? i : -1)).filter((i) => i >= 0);
+    localStorage.setItem('checklist', JSON.stringify(done));
+    const pct = Math.round((done.length / ITEMS.length) * 100);
+    $('#check-bar').setAttribute('aria-valuenow', pct);
+    $('#check-line').style.setProperty('--vtmn-progressbar_progress-transform', `translateX(-${100 - pct}%) scale(1)`);
+    $('#check-count').textContent = `${done.length} of ${ITEMS.length} done`;
+  }
+  $('#checklist').addEventListener('change', update); update();
+
+  $('#essentials').innerHTML = ['starter-kit', 'bed', 'harness', 'bowl'].map((id) => gearCard(gearById(id))).join('');
+</script>
+</body>
+</html>
