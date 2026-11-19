@@ -18,10 +18,12 @@ index.html                      the page: markup, page-layout CSS, interaction s
 vitamin/components/bundle.css   Vitamin component stylesheet (loads Roboto from Google Fonts)
 vitamin/tokens.css              Vitamin tokens as CSS variables (light + dark), Vitamix @font-face
 vitamin/fonts/vitamix.woff2     Vitamix icon font
+vitamin/catppuccin.css          Catppuccin flavours as Vitamin semantic colours (generated)
+tools/build-catppuccin.py       generator for catppuccin.css
 assets/product-placeholder.svg  placeholder product image
 ```
 
-`vitamin/tokens.css` is generated from the design system's `tokens.json`. Colours resolve the per-theme H/S/L channels in `bundle.css`, so the page follows `data-theme="light"` / `"dark"` on `<html>`.
+`vitamin/tokens.css` is generated from the design system's `tokens.json`. Colours resolve the per-theme H/S/L channels in `bundle.css`, so the page follows `data-theme="light"` / `"dark"` on `<html>`. Adding `data-catppuccin` to `<html>` swaps the semantic colours for Catppuccin Latte (light) or Mocha (dark); edit the mapping in `tools/build-catppuccin.py` and run `python3 tools/build-catppuccin.py > vitamin/catppuccin.css`.
 
 ## Components used (all 31)
 
@@ -35,6 +37,7 @@ Accordion, Alert, Badge, Breadcrumb, Button, Card, Checkbox, Chip, Divider, Drop
 - **Size guide**: modal
 - **Newsletter**: success alert
 - Light / dark theme switch in the footer
+- **Catppuccin** switch in the footer (experimental): Latte on light, Mocha on dark
 
 Alerts, toasts and snackbars stay open until closed (the system's default animation hides them after a few seconds).
 
