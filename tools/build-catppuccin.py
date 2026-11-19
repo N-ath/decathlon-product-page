@@ -1,0 +1,107 @@
+#!/usr/bin/env python3
+"""Generate vitamin/catppuccin.css: Catppuccin flavours mapped onto Vitamin semantic colour channels.
+
+Latte layers on top of data-theme="light" and Mocha on top of data-theme="dark", so Vitamin's derived
+hover/active formulas for each mode still apply. Enable with data-catppuccin on <html>.
+Run: python3 tools/build-catppuccin.py > vitamin/catppuccin.css
+"""
+
+# Official Catppuccin palette, HSL (h, s%, l%).
+LATTE = dict(
+    rosewater=(11, 59, 67), flamingo=(0, 60, 67), pink=(316, 73, 69), mauve=(266, 85, 58),
+    red=(347, 87, 44), maroon=(355, 76, 59), peach=(22, 99, 52), yellow=(35, 77, 49),
+    green=(109, 58, 40), teal=(183, 74, 35), sky=(197, 97, 46), sapphire=(189, 70, 42),
+    blue=(220, 91, 54), lavender=(231, 97, 72), text=(234, 16, 35), subtext1=(233, 13, 41),
+    subtext0=(233, 10, 47), overlay2=(232, 10, 53), overlay1=(231, 10, 59), overlay0=(228, 11, 65),
+    surface2=(227, 12, 71), surface1=(225, 14, 77), surface0=(223, 16, 83), base=(220, 23, 95),
+    mantle=(220, 22, 92), crust=(220, 21, 89),
+)
+MOCHA = dict(
+    rosewater=(10, 56, 91), flamingo=(0, 59, 88), pink=(316, 72, 86), mauve=(267, 84, 81),
+    red=(343, 81, 75), maroon=(350, 65, 77), peach=(23, 92, 75), yellow=(41, 86, 83),
+    green=(115, 54, 76), teal=(170, 57, 73), sky=(189, 71, 73), sapphire=(199, 76, 69),
+    blue=(217, 92, 76), lavender=(232, 97, 85), text=(226, 64, 88), subtext1=(227, 35, 80),
+    subtext0=(228, 24, 72), overlay2=(228, 17, 64), overlay1=(230, 13, 55), overlay0=(231, 11, 47),
+    surface2=(233, 12, 39), surface1=(234, 13, 31), surface0=(237, 16, 23), base=(240, 21, 15),
+    mantle=(240, 21, 12), crust=(240, 23, 9),
+)
+
+# Semantic token -> (Latte colour, Mocha colour). A "mocha:"/"latte:" prefix borrows from the other
+# flavour: Mocha's pastels make soft decorative tags on Latte, Latte's deeper hues do the same on Mocha.
+MAP = {
+    "background-primary": ("base", "base"),
+    "background-secondary": ("mantle", "mantle"),
+    "background-tertiary": ("crust", "surface0"),
+    "background-brand-primary": ("blue", "blue"),
+    "background-brand-secondary": ("surface0", "surface0"),
+    "background-accent": ("yellow", "yellow"),
+    "background-alert": ("red", "red"),
+    "background-primary-reversed": ("text", "text"),
+    "background-brand-primary-reversed": ("base", "crust"),
+    "background-discount": ("red", "red"),
+    "content-primary": ("text", "text"),
+    "content-secondary": ("subtext1", "subtext1"),
+    "content-tertiary": ("subtext0", "subtext0"),
+    "content-action": ("blue", "blue"),
+    "content-active": ("sapphire", "sapphire"),
+    "content-inactive": ("overlay0", "overlay0"),
+    "content-negative": ("red", "red"),
+    "content-warning": ("peach", "peach"),
+    "content-positive": ("green", "green"),
+    "content-information": ("blue", "blue"),
+    "content-accent": ("text", "crust"),
+    "content-visited": ("mauve", "mauve"),
+    "content-primary-reversed": ("base", "crust"),
+    "content-action-reversed": ("base", "crust"),
+    "content-visited-reversed": ("mocha:mauve", "latte:mauve"),
+    "border-primary": ("surface1", "surface1"),
+    "border-secondary": ("surface0", "crust"),
+    "border-tertiary": ("base", "surface0"),
+    "border-active": ("blue", "blue"),
+    "border-inactive": ("overlay0", "overlay0"),
+    "border-negative": ("red", "red"),
+    "border-warning": ("peach", "peach"),
+    "border-positive": ("green", "green"),
+    "border-information": ("blue", "blue"),
+    "border-primary-reversed": ("text", "text"),
+    "decorative-gravel": ("surface0", "surface1"),
+    "decorative-brick": ("mocha:red", "latte:red"),
+    "decorative-saffron": ("mocha:peach", "latte:peach"),
+    "decorative-gold": ("mocha:yellow", "latte:yellow"),
+    "decorative-jade": ("mocha:teal", "latte:teal"),
+    "decorative-emerald": ("mocha:green", "latte:green"),
+    "decorative-cobalt": ("mocha:sapphire", "latte:sapphire"),
+    "decorative-amethyst": ("mocha:mauve", "latte:mauve"),
+    "hover-primary": ("surface0", "surface0"),
+    "shadow": ("overlay2", "crust"),
+}
+
+PALETTES = {"latte": LATTE, "mocha": MOCHA}
+
+
+def resolve(ref, own):
+    flavour, _, name = ref.rpartition(":")
+    return PALETTES[flavour or own][name]
+
+
+def block(selector, own, idx):
+    lines = [f"{selector} {{"]
+    for token, refs in MAP.items():
+        h, s, l = resolve(refs[idx], own)
+        for ch, v in (("h", h), ("s", f"{s}%"), ("l", f"{l}%")):
+            lines.append(f"  --vtmn-semantic-color_{token}--{ch}: {v};")
+    # Focus ring: inner ring in the page base, outer ring in Catppuccin lavender.
+    base, lav = PALETTES[own]["base"], PALETTES[own]["lavender"]
+    lines.append(
+        f"  --vtmn-shadow_focus-visible: 0 0 0 0.25rem hsl({base[0]}, {base[1]}%, {base[2]}%), "
+        f"0 0 0 0.375rem hsl({lav[0]}, {lav[1]}%, {lav[2]}%);"
+    )
+    lines.append("}")
+    return "\n".join(lines)
+
+
+print("/* Catppuccin theme for Vitamin Web. GENERATED by tools/build-catppuccin.py, do not edit by hand.")
+print("   Palette: https://catppuccin.com/palette (MIT). Latte = light, Mocha = dark. */")
+print(block('[data-theme="light"][data-catppuccin]', "latte", 0))
+print()
+print(block('[data-theme="dark"][data-catppuccin]', "mocha", 1))

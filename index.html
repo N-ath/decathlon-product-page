@@ -8,6 +8,7 @@
   <!-- Vitamin Web design system: component styles (also loads Roboto from Google Fonts), then the token variables + Vitamix icon font -->
   <link rel="stylesheet" href="vitamin/components/bundle.css">
   <link rel="stylesheet" href="vitamin/tokens.css">
+  <link rel="stylesheet" href="vitamin/catppuccin.css">
 
   <style>
     /* Page layout only: every colour, space, radius and shadow comes from a Vitamin token */
@@ -574,6 +575,9 @@
       <button class="vtmn-btn vtmn-btn_variant--ghost vtmn-btn_size--small vtmn-btn--icon-left" id="theme-toggle">
         <span class="vtmx-eye-line" aria-hidden="true"></span>Dark theme
       </button>
+      <button class="vtmn-btn vtmn-btn_variant--ghost vtmn-btn_size--small" id="catppuccin-toggle" aria-pressed="false">
+        Catppuccin
+      </button>
     </div>
   </footer>
 </main>
@@ -770,6 +774,13 @@
     const dark = document.documentElement.dataset.theme !== 'dark';
     document.documentElement.dataset.theme = dark ? 'dark' : 'light';
     $('#theme-toggle').lastChild.textContent = dark ? 'Light theme' : 'Dark theme';
+  });
+
+  /* ---------- Catppuccin flavour (Latte on light, Mocha on dark) ---------- */
+  $('#catppuccin-toggle').addEventListener('click', () => {
+    const on = !('catppuccin' in document.documentElement.dataset);
+    document.documentElement.toggleAttribute('data-catppuccin', on);
+    $('#catppuccin-toggle').setAttribute('aria-pressed', String(on));
   });
 </script>
 </body>
