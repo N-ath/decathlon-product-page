@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en" class="vtmn-purple" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hiking backpack 30 L · Decathlon product page (purple)</title>
+
+  <!-- Vitamin Web design system: component styles (also loads Roboto from Google Fonts), then the token variables + Vitamix icon font -->
+  <link rel="stylesheet" href="vitamin/components/bundle.css">
+  <link rel="stylesheet" href="vitamin/tokens.css">
+  <link rel="stylesheet" href="vitamin/themes/purple.css">
+
+  <style>
+    /* Page layout only: every colour, space, radius and shadow comes from a Vitamin token */
+    body {
+      margin: 0;
+      background: var(--vtmn-semantic-color_background-secondary);
+      color: var(--vtmn-semantic-color_content-primary);
+      font-family: var(--vtmn-typo_font-family);
+    }
+    a { color: var(--vtmn-semantic-color_content-action); }
+    a:hover { color: var(--vtmn-semantic-color_content-active); }
+
+    .page-header { background: var(--vtmn-semantic-color_background-primary); box-shadow: var(--vtmn-shadow_100); }
+    .page-header .vtmn-navbar { max-width: 1440px; margin: 0 auto; }
+
+    .page {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: var(--vtmn-spacing_5) var(--vtmn-layout-margin_mobile) var(--vtmn-spacing_10);
+      display: flex;
+      flex-direction: column;
+      gap: var(--vtmn-spacing_8);
+    }
+
+    .panel {
+      background: var(--vtmn-semantic-color_background-primary);
+      border-radius: var(--vtmn-radius_200);
+      box-shadow: var(--vtmn-shadow_100);
+      padding: var(--vtmn-spacing_6);
+      box-sizing: border-box;
+    }
+    .stack { display: flex; flex-direction: column; }
+    .row { display: flex; flex-wrap: wrap; }
+    .gap-1 { gap: var(--vtmn-spacing_1); } .gap-2 { gap: var(--vtmn-spacing_2); } .gap-3 { gap: var(--vtmn-spacing_3); }
+    .gap-4 { gap: var(--vtmn-spacing_4); } .gap-5 { gap: var(--vtmn-spacing_5); } .gap-6 { gap: var(--vtmn-spacing_6); }
+    .gap-7 { gap: var(--vtmn-spacing_7); }
+    .muted { color: var(--vtmn-semantic-color_content-secondary); }
+    .section-head { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--vtmn-spacing_3); }
+    h1, h2, h3, p { margin: 0; }
+
+    /* Hero */
+    .hero { display: flex; flex-wrap: wrap; gap: var(--vtmn-spacing_7); align-items: flex-start; }
+    .gallery { flex: 999 1 520px; min-width: 0; }
+    .gallery-main { position: relative; background: var(--vtmn-semantic-color_background-primary); border-radius: var(--vtmn-radius_200); overflow: hidden; }
+    .gallery-main img, .thumb img, .vtmn-card_image img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+    .gallery-tags { position: absolute; top: var(--vtmn-spacing_4); left: var(--vtmn-spacing_4); display: flex; gap: var(--vtmn-spacing_2); }
+    .gallery-actions { position: absolute; top: var(--vtmn-spacing_4); right: var(--vtmn-spacing_4); display: flex; gap: var(--vtmn-spacing_2); }
+    .thumbs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--vtmn-spacing_3); }
+    .thumb { padding: 0; border: 2px solid transparent; border-radius: var(--vtmn-radius_200); overflow: hidden; background: var(--vtmn-semantic-color_background-primary); cursor: pointer; }
+    .thumb[aria-current="true"] { border-color: var(--vtmn-semantic-color_border-active); }
+    .thumb:focus-visible { box-shadow: var(--vtmn-shadow_focus-visible); outline: none; }
+
+    .buybox { flex: 1 1 380px; min-width: 0; }
+    .eyebrow { text-transform: uppercase; letter-spacing: 0.04em; font-weight: 700; }
+    .add-to-cart-slot { flex: 1 1 200px; }
+    .adding {
+      display: flex; align-items: center; justify-content: center; gap: var(--vtmn-spacing_3);
+      height: 3.5rem; border-radius: var(--vtmn-radius_100);
+      background: var(--vtmn-semantic-color_background-tertiary);
+    }
+
+    .display-headline { font-family: var(--vtmn-typo_font-family--condensed); font-style: italic; text-transform: uppercase; }
+
+    /* Grids of cards */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--vtmn-spacing_5); }
+    .skeleton-card { display: flex; flex-direction: column; background: var(--vtmn-semantic-color_background-primary); border-radius: var(--vtmn-radius_200); box-shadow: var(--vtmn-shadow_100); overflow: hidden; }
+    .skeleton-card .vtmn-skeleton:first-child { display: block; width: 100%; height: 140px; border-radius: 0; }
+    .skeleton-card > div { padding: var(--vtmn-spacing_4); display: flex; flex-direction: column; gap: var(--vtmn-spacing_2); }
+
+    .newsletter {
+      background: var(--vtmn-semantic-color_background-brand-secondary);
+      border-radius: var(--vtmn-radius_300);
+      padding: var(--vtmn-spacing_7);
+      display: flex; flex-wrap: wrap; gap: var(--vtmn-spacing_6); align-items: center;
+    }
+
+    /* The system's alert / toast / snackbar animations hide them after a few seconds;
+       here they stay until closed so the state can be inspected. */
+    .vtmn-alert, .vtmn-toast, .vtmn-snackbar { animation: var(--vtmn-animation_fade-in) !important; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+
+<!-- ======================= Navbar · Search · Badge ======================= -->
+<header class="page-header">
+  <nav class="vtmn-navbar" aria-label="Main navigation">
+    <div class="vtmn-navbar_left-navigation">
+      <button class="vtmn-btn vtmn-btn--icon-alone vtmn-btn_variant--ghost" aria-expanded="false">
+        <span class="vtmn-sr-only">Menu</span>
+        <span class="vtmx-menu-line" aria-hidden="true"></span>
+      </button>
+    </div>
+    <div class="vtmn-navbar_logo">
+      <a href="#" title="Decathlon Home Page">
+        <svg viewBox="0 0 200 50" width="160" aria-label="Decathlon logo" role="img">
+          <polygon fill="#0082C3" points="0 50 200 50 200 0 0 0"></polygon>
+          <path fill="#FEFEFE" d="M74.527071,16.6779432 L74.5871824,16.7553801 L71.2267902,22.1407602 L71.002557,21.8748979 L70.8460776,21.700949 L70.539255,21.3787525 L70.2887046,21.1312369 C69.0363546,19.9259321 66.6358297,18.0780871 63.7352818,18.1375439 C59.9290815,18.2085965 57.0226936,21.325848 57.0226936,24.9547953 C57.0226936,28.1436842 58.9669204,31.6966082 64.1392314,31.7764327 C67.113322,31.8130862 69.1436987,29.7118123 70.1836322,28.1974417 L70.3846431,27.8933918 C70.5039784,27.7066387 70.7838561,27.2462134 71.1752358,26.5953638 L79.674898,12.2866667 L86.5528714,12.2866667 L86.5528714,37.6767251 L80.2228644,37.6767251 L80.2228644,33.8676608 L75.1805945,33.8468248 L74.5072706,33.8509942 L74.3235998,33.858709 L74.2914123,33.8649142 L74.2959289,33.8676608 L74.1598124,34.0180955 L73.9980541,34.1851087 L73.7694056,34.4074517 L73.5771497,34.5846179 L73.3555225,34.7794959 L73.1047092,34.9893808 C71.3357459,36.4326274 67.6334022,38.6960396 62.2447664,38.1735088 C56.8341838,37.6568421 50.2120451,33.3854971 50.2120451,24.8340351 C50.2120451,20.7740936 53.2729877,12.0123977 63.7964597,11.7773099 C70.2757311,11.6338809 74.0171371,16.0367651 74.527071,16.6779432 Z M151.806828,11.7558772 C155.269964,11.7558772 158.547517,13.0839474 161.071324,15.526345 C162.688692,17.0955516 163.833945,18.9380513 164.476033,20.934262 L164.47457,12.2863743 L170.416141,12.2863743 L180.294465,26.3963158 L180.294465,12.2863743 L186.881185,12.2863743 L186.881185,37.6936842 L181.094168,37.6936842 L171.058655,23.5384211 L171.058655,37.6936842 L164.47457,37.6936842 L164.475487,28.9844263 C163.864697,30.9717297 162.802078,32.7568784 161.328329,34.2509064 C158.810084,36.8365789 155.381196,38.2389181 151.769653,38.2389181 C147.984791,38.2389181 144.740588,36.9068625 142.198981,34.3055955 L142.199356,37.6936842 L127.989697,37.6936842 L127.989697,12.2910526 L134.527826,12.2910526 L134.527826,32.0799415 L140.436099,32.0812283 C139.101501,29.9643233 138.427608,27.515233 138.427608,24.732193 C138.427608,21.2096784 139.806598,17.9710819 142.362018,15.4938889 C144.914804,13.0117251 148.120934,11.7558772 151.806828,11.7558772 Z M21.2259697,12.2866082 C25.4943703,12.2866082 28.4777429,12.8202339 31.2769964,15.3216959 C33.2874427,17.1134282 34.5586383,19.5436013 35.0146705,22.5223167 L35.0132665,12.2866082 L49.6394612,12.2866082 L49.6394612,17.8759649 L41.5929612,17.8850292 L41.5929612,22.0359064 L48.560506,22.0297661 L48.560506,27.4935088 L41.5929612,27.5005263 L41.5929612,32.1054971 L49.6394612,32.1054971 L49.6394612,37.6765497 L35.0132665,37.6765497 L35.0151902,27.5477124 C34.5656005,30.3264025 33.3179492,32.6755167 31.3068535,34.5491813 C28.4393969,37.188655 25.9071014,37.6936257 22.1266602,37.6936257 L12.0381658,37.6936257 L12.0381658,12.2866082 L21.2259697,12.2866082 Z M104.712103,12.2764327 L104.712103,18.3504094 L99.6088731,18.3504094 L99.6088731,37.6936842 L93.0338619,37.6936842 L93.0338619,18.3504094 L87.9259487,18.3504094 L87.9259487,12.2764327 L104.712103,12.2764327 Z M112.640813,12.2840351 L112.640813,21.9322807 L119.407554,21.9322807 L119.407554,12.2840351 L125.982566,12.2840351 L125.982566,37.6936842 L119.407554,37.6936842 L119.407554,27.9717544 L112.640813,27.9717544 L112.640813,37.6936842 L106.068729,37.6936842 L106.068729,12.2840351 L112.640813,12.2840351 Z M21.2259697,17.7500585 L18.6152261,17.7500585 L18.6152261,32.1138012 L21.2558269,32.1138012 C26.2879263,32.1138012 28.6662527,29.9032749 28.6662527,24.9035673 C28.6662527,20.3287135 26.055509,17.7500585 21.2259697,17.7500585 Z M151.84371,18.077807 C147.983943,18.077807 144.951687,21.0649415 144.951687,24.8011988 C144.951687,28.8289766 148.194992,31.9096784 151.769653,31.9096784 C155.492722,31.9096784 158.521758,28.9652339 158.521758,24.8011988 C158.521758,21.0649415 155.492722,18.077807 151.84371,18.077807 Z M80.3531235,22.8062573 L76.9608252,28.5562573 L80.3531235,28.5562573 L80.3531235,22.8062573 Z"></path>
+        </svg>
+      </a>
+    </div>
+    <div class="vtmn-navbar_middle-area">
+      <div class="vtmn-search vtmn-search_variant--persistent" role="search">
+        <label class="vtmn-sr-only" for="nav-search">Search a sport product</label>
+        <input type="search" id="nav-search" placeholder="Search a sport product" title="Search a sport product">
+        <div class="vtmn-search_buttons">
+          <button class="vtmn-btn vtmn-btn_variant--ghost vtmn-btn_size--medium vtmn-btn--icon-alone">
+            <span class="vtmn-sr-only">Search</span>
+            <span class="vtmx-search-line" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="vtmn-navbar_right-navigation">
+      <a class="vtmn-navbar_link" href="#"><div><span class="vtmx-store-line" aria-hidden="true"></span></div><span>Find a store</span></a>
+      <a class="vtmn-navbar_link" href="#"><div><span class="vtmx-user-line" aria-hidden="true"></span></div><span>Account</span></a>
+      <a class="vtmn-navbar_link" href="#">
+        <div>
+          <span class="vtmn-badge vtmn-badge_variant--accent" id="cart-badge">2</span>
+          <span class="vtmx-shopping-cart-line" aria-hidden="true"></span>
+        </div>
+        <span>Cart</span>
+      </a>
+    </div>
+  </nav>
+</header>
+
+<main class="page">
+
+  <!-- ======================= Breadcrumb ======================= -->
+  <nav aria-label="Breadcrumb" class="vtmn-breadcrumb">
+    <ol>
+      <li><span class="vtmx-home-line" aria-hidden="true"></span><a href="#">Home</a></li>
+      <li><a href="#">Hiking</a></li>
+      <li><a href="#">Backpacks</a></li>
+      <li aria-current="page">Hiking backpack 30 L</li>
+    </ol>
+  </nav>
+
+  <!-- ======================= Hero: gallery + buy box ======================= -->
+  <section class="hero" style="position: relative;">
+
+    <div class="gallery stack gap-3" style="width: 476px; height: 572px;">
+      <div class="gallery-main">
+        <img id="main-photo" src="assets/product-placeholder.svg" alt="Hiking backpack 30 L in khaki, photo 1 of 4">
+        <div class="gallery-tags">
+          <span class="vtmn-tag vtmn-tag_variant--brand vtmn-tag_size--medium">New</span>
+          <span class="vtmn-tag vtmn-tag_variant--decorative_jade vtmn-tag_size--medium">Eco-design</span>
+        </div>
+        <div class="gallery-actions">
+          <button class="vtmn-btn vtmn-btn_variant--secondary vtmn-btn--icon-alone" id="wish-btn" aria-pressed="false">
+            <span class="vtmn-sr-only" id="wish-label">Add to wishlist</span>
+            <span class="vtmx-heart-line" id="wish-icon" aria-hidden="true"></span>
+          </button>
+          <button class="vtmn-btn vtmn-btn_variant--secondary vtmn-btn--icon-alone">
+            <span class="vtmn-sr-only">Share this product</span>
+            <span class="vtmx-share-line" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+      <div class="thumbs" id="thumbs">
+        <button class="thumb" aria-current="true" data-index="0" aria-label="Show photo 1 of 4"><img src="assets/product-placeholder.svg" alt=""></button>
+        <button class="thumb" data-index="1" aria-label="Show photo 2 of 4"><img src="assets/product-placeholder.svg" alt=""></button>
+        <button class="thumb" data-index="2" aria-label="Show photo 3 of 4"><img src="assets/product-placeholder.svg" alt=""></button>
+        <button class="thumb" data-index="3" aria-label="Show photo 4 of 4"><img src="assets/product-placeholder.svg" alt=""></button>
+      </div>
+    </div>
+
+    <div class="buybox panel stack gap-5" style="width: 250px; height: 829px;">
+      <div class="stack gap-2">
+        <span class="vtmn-typo_caption-1 muted eyebrow">Hiking · Mountain</span>
+        <h1 class="vtmn-typo_title-3">Hiking backpack 30 L</h1>
+        <div class="vtmn-rating vtmn-rating_size--small">
+          <span class="vtmn-sr-only">4 and a half stars out of 5</span>
+          <span class="vtmx-star-fill" role="presentation"></span>
+          <span class="vtmx-star-fill" role="presentation"></span>
+          <span class="vtmx-star-fill" role="presentation"></span>
+          <span class="vtmx-star-fill" role="presentation"></span>
+          <span class="vtmx-star-half-fill" role="presentation"></span>
+          <span class="vtmn-rating_comment--primary"><span class="vtmn-sr-only">article rating</span>4.6/5</span>
+          <span class="vtmn-rating_comment--secondary"><span class="vtmn-sr-only">number of ratings</span>(1,248)</span>
+        </div>
+      </div>
+
+      <!-- Price -->
+      <div class="row gap-3" style="align-items: center;">
+        <span class="vtmn-price vtmn-price_size--large vtmn-price_variant--accent">39,99 €</span>
+        <span class="vtmn-price vtmn-price_size--small vtmn-price_variant--strikethrough" aria-label="Former price">49,99 €</span>
+        <span class="vtmn-tag vtmn-tag_variant--alert vtmn-tag_size--medium">-20%</span>
+      </div>
+
+      <div class="vtmn-divider" role="separator"></div>
+
+      <!-- Colour: single-choice chips -->
+      <div class="stack gap-3">
+        <span class="vtmn-typo_text-3" style="font-weight: 700;">Colour: <span id="color-name">Khaki</span></span>
+        <div class="row gap-2" id="color-chips">
+          <button class="vtmn-chip vtmn-chip_variant--single-choice" aria-pressed="true">Khaki</button>
+          <button class="vtmn-chip vtmn-chip_variant--single-choice" aria-pressed="false">Black</button>
+          <button class="vtmn-chip vtmn-chip_variant--single-choice" aria-pressed="false">Navy blue</button>
+          <button class="vtmn-chip vtmn-chip_variant--single-choice" aria-pressed="false" aria-disabled="true" disabled>Red · sold out</button>
+        </div>
+      </div>
+
+      <!-- Back length: Select + Tooltip, Size guide link -->
+      <div class="row gap-4" style="align-items: flex-end;">
+        <div class="vtmn-select_container" style="flex: 1 1 180px;">
+          <label for="back-length">Back length
+            <span tabindex="0" id="tip-back" class="vtmn-tooltip" data-tooltip="Measured from the base of your neck to the top of your hips" data-position="top" role="tooltip"><span class="vtmx-information-line" aria-describedby="tip-back"></span></span>
+          </label>
+          <select name="back-length" id="back-length">
+            <option value="sm">S/M · 40–48 cm</option>
+            <option value="ml" selected>M/L · 48–56 cm</option>
+          </select>
+        </div>
+        <a href="#size-guide" class="vtmn-link vtmn-link--standalone" id="open-size-guide" style="margin-bottom: var(--vtmn-spacing_3);">Size guide</a>
+      </div>
+
+      <!-- Quantity + Add to cart (conversion button, Loader while adding) -->
+      <div class="row gap-3" style="align-items: flex-end;">
+        <div class="vtmn-quantity">
+          <label for="qty">Quantity</label>
+          <div class="vtmn-quantity_content">
+            <button class="vtmn-btn vtmn-btn_variant--secondary vtmn-btn--icon-alone" id="qty-dec" disabled>
+              <span class="vtmn-sr-only">Remove one hiking backpack</span>
+              <span class="vtmx-subtract-line" aria-hidden="true"></span>
+            </button>
+            <input type="number" id="qty" min="1" value="1">
+            <button class="vtmn-btn vtmn-btn_variant--secondary vtmn-btn--icon-alone" id="qty-inc">
+              <span class="vtmn-sr-only">Add one hiking backpack</span>
+              <span class="vtmx-add-line" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+        <div class="add-to-cart-slot">
+          <div class="adding" id="adding" hidden>
+            <div class="vtmn-loader vtmn-loader_size--small"><span class="vtmn-sr-only">Adding to cart</span></div>
+            <span class="vtmn-typo_text-3">Adding to cart…</span>
+          </div>
+          <button class="vtmn-btn vtmn-btn_variant--conversion vtmn-btn_size--stretched vtmn-btn--icon-left" id="add-to-cart">
+            <span class="vtmx-shopping-cart-line" aria-hidden="true"></span>
+            Add to cart
+          </button>
+        </div>
+      </div>
+
+      <!-- Add-on: Checkbox + small Price -->
+      <div style="display: flex; align-items: center; gap: var(--vtmn-spacing_3);">
+        <div style="flex: 1;">
+          <input class="vtmn-checkbox" type="checkbox" id="rain-cover">
+          <label for="rain-cover">Add a rain cover</label>
+        </div>
+        <span class="vtmn-price vtmn-price_size--xsmall vtmn-price_variant--default">7,99 €</span>
+      </div>
+
+      <div class="vtmn-divider" role="separator" aria-labelledby="delivery-title"><span id="delivery-title">Delivery</span></div>
+
+      <!-- Delivery: Radio buttons -->
+      <form action="#" class="stack gap-2" onsubmit="event.preventDefault()">
+        <div>
+          <input class="vtmn-radio-button" type="radio" id="ship-home" name="shipping" checked>
+          <label for="ship-home">Home delivery · 2–4 working days</label>
+        </div>
+        <div>
+          <input class="vtmn-radio-button" type="radio" id="ship-store" name="shipping">
+          <label for="ship-store">Click &amp; collect in store · free</label>
+        </div>
+        <div>
+          <input class="vtmn-radio-button" type="radio" id="ship-express" name="shipping" disabled>
+          <label for="ship-express">Express delivery · unavailable for your area</label>
+        </div>
+      </form>
+
+      <!-- Postcode: Text input -->
+      <div>
+        <label class="vtmn-text-input_label" for="postcode">Check delivery to your postcode</label>
+        <div class="vtmn-text-input_container">
+          <input type="text" class="vtmn-text-input" id="postcode" placeholder="e.g. 75001" aria-describedby="postcode-helper">
+          <span class="vtmx-map-pin-line" aria-hidden="true"></span>
+        </div>
+        <p id="postcode-helper" class="vtmn-text-input_helper-text">We show the fastest option near you</p>
+      </div>
+
+      <!-- Services: List + Popover -->
+      <ul class="vtmn-list">
+        <li class="vtmn-list_item-size--small vtmn-list_item--without-divider">
+          <div class="vtmn-list_start-visual"><span class="vtmx-truck-line" aria-hidden="true"></span></div>
+          <div class="vtmn-list_text"><span>Free home delivery from 50 €</span></div>
+        </li>
+        <li class="vtmn-list_item-size--small vtmn-list_item--without-divider">
+          <div class="vtmn-list_start-visual"><span class="vtmx-store-line" aria-hidden="true"></span></div>
+          <div class="vtmn-list_text"><span>In stock in 12 stores near you</span></div>
+        </li>
+        <li class="vtmn-list_item-size--small vtmn-list_item--without-divider">
+          <div class="vtmn-list_start-visual"><span class="vtmx-refresh-line" aria-hidden="true"></span></div>
+          <div class="vtmn-list_text"><span>Free returns</span></div>
+          <div class="vtmn-list_end-action">
+            <div class="vtmn-popover" data-position="top-left" aria-labelledby="returns-title" aria-describedby="returns-pop" tabindex="0">
+              <button class="vtmn-btn vtmn-btn_variant--ghost vtmn-btn_size--small">How it works</button>
+              <div id="returns-pop" role="dialog">
+                <span id="returns-title" class="vtmn-popover_title" role="heading">Returning is easy</span>
+                <span class="vtmn-popover_text">Bring the item back to any store or drop it at a parcel point with the prepaid label from your account.</span>
+                <button class="vtmn-btn vtmn-btn_variant--primary-reversed vtmn-btn_size--small">Got it</button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <!-- Price alert: Toggle -->
+      <div class="vtmn-toggle">
+        <div class="vtmn-toggle_switch">
+          <input type="checkbox" id="price-alert">
+          <span aria-hidden="true"></span>
+        </div>
+        <label for="price-alert">Tell me when the price drops</label>
+      </div>
+    </div>
+    <!-- Added manually on the canvas by Nath -->
+    <div style="box-sizing: border-box; display: flex; flex-direction: column; gap: 12px; padding: 16px; background-color: #ffffff; border-radius: 2px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); position: absolute; left: 31px; top: 642px; width: 200px; height: 96px;"><div style="font-size: 16px; line-height: 1; font-family: Roboto, 'system-ui', -apple-system, sans-serif; position: absolute; left: 20px; top: 26px;">Block added by Nath manually</div></div>
+  </section>
+
+  <!-- ======================= Tabs ======================= -->
+  <section class="panel stack gap-5">
+    <ul class="vtmn-tabs" role="tablist" aria-label="Product information" id="tabs">
+      <li><button role="tab" id="tab-desc" aria-controls="panel-desc" aria-selected="true">Description</button></li>
+      <li><button role="tab" id="tab-specs" aria-controls="panel-specs" aria-selected="false" tabindex="-1">Technical specs</button></li>
+      <li><button role="tab" id="tab-compat" aria-controls="panel-compat" aria-selected="false" tabindex="-1">Made for</button></li>
+    </ul>
+
+    <div role="tabpanel" id="panel-desc" aria-labelledby="tab-desc" class="row gap-7">
+      <div class="stack gap-4" style="flex: 1 1 420px;">
+        <h2 class="vtmn-typo_display-2 display-headline">Ready for the ridge</h2>
+        <p class="vtmn-typo_text-1 muted">A 30-litre day pack for mountain hikes, with a ventilated back, a hip belt that takes the weight off your shoulders and a front pocket you can reach without taking it off.</p>
+        <a href="#" class="vtmn-link vtmn-link--standalone vtmn-link--icon-along">Read the full product story</a>
+      </div>
+      <div style="flex: 1 1 380px;">
+        <details class="vtmn-accordion" open>
+          <summary>Materials</summary>
+          <div class="vtmn-accordion_content"><p>Main fabric 100% polyester with a water-repellent coating. Back panel in 3D mesh.</p></div>
+        </details>
+        <details class="vtmn-accordion">
+          <summary>Care instructions</summary>
+          <div class="vtmn-accordion_content"><p>Hand wash in cold water. Do not tumble dry. Let it dry fully before storing.</p></div>
+        </details>
+        <details class="vtmn-accordion">
+          <summary>Warranty</summary>
+          <div class="vtmn-accordion_content"><p>[YOUR WARRANTY TERMS]</p></div>
+        </details>
+        <details class="vtmn-accordion" aria-disabled="true">
+          <summary>Spare parts (coming soon)</summary>
+          <div class="vtmn-accordion_content"><p>Not available yet.</p></div>
+        </details>
+      </div>
+    </div>
+
+    <ul class="vtmn-list" role="tabpanel" id="panel-specs" aria-labelledby="tab-specs" style="max-width: 640px;" hidden>
+      <li><div class="vtmn-list_start-visual"><span class="vtmx-ruler-line" aria-hidden="true"></span></div><div class="vtmn-list_text"><span>Volume</span><span>30 L</span></div></li>
+      <li><div class="vtmn-list_start-visual"><span class="vtmx-information-line" aria-hidden="true"></span></div><div class="vtmn-list_text"><span>Weight</span><span>[WEIGHT] g</span></div></li>
+      <li><div class="vtmn-list_start-visual"><span class="vtmx-eye-line" aria-hidden="true"></span></div><div class="vtmn-list_text"><span>Dimensions</span><span>[H × W × D] cm</span></div></li>
+      <li><div class="vtmn-list_start-visual"><span class="vtmx-lock-line" aria-hidden="true"></span></div><div class="vtmn-list_text"><span>Hydration compatible</span><span>Yes, up to 2 L pouch</span></div></li>
+    </ul>
+
+    <div role="tabpanel" id="panel-compat" aria-labelledby="tab-compat" class="row gap-2" hidden>
+      <div class="vtmn-chip vtmn-chip_variant--filter" aria-pressed="true">Day hikes</div>
+      <div class="vtmn-chip vtmn-chip_variant--filter" aria-pressed="true">Mountain trails</div>
+      <div class="vtmn-chip vtmn-chip_variant--filter" aria-pressed="false">Snow hiking</div>
+      <div class="vtmn-chip vtmn-chip_variant--filter" aria-pressed="false" aria-disabled="true">Multi-day trekking</div>
+    </div>
+  </section>
+
+  <!-- ======================= Reviews ======================= -->
+  <section aria-labelledby="reviews-title" class="stack gap-5">
+    <div class="section-head" style="align-items: baseline;">
+      <h2 id="reviews-title" class="vtmn-typo_title-4">Customer reviews</h2>
+      <a href="#" class="vtmn-link vtmn-link--standalone">See all 1,248 reviews</a>
+    </div>
+
+    <div class="row gap-6" style="align-items: flex-start;">
+      <!-- Summary: Card + circular & linear Progressbars -->
+      <div class="vtmn-card" style="flex: 1 1 320px;">
+        <div class="vtmn-card_content stack gap-4">
+          <div style="display: flex; align-items: center; gap: var(--vtmn-spacing_5);">
+            <div class="vtmn-progressbar_container vtmn-progressbar_variant--circular" role="progressbar" aria-labelledby="recommend-value" aria-valuemin="0" aria-valuemax="100" aria-valuenow="92">
+              <span id="recommend-value" class="vtmn-progressbar_label">92%</span>
+              <svg><circle class="vtmn-progressbar_indicator" stroke-dashoffset="calc(400px - (400px * 92) / 100)" cx="50%" cy="50%" r="64"></circle></svg>
+            </div>
+            <div class="stack gap-1">
+              <span class="vtmn-typo_title-1">4.6</span>
+              <div class="vtmn-rating vtmn-rating_size--medium vtmn-rating_variant--brand">
+                <span class="vtmx-star-fill" role="presentation"></span>
+                <span class="vtmn-rating_comment--primary"><span class="vtmn-sr-only">article rating</span>4.6/5</span>
+              </div>
+              <span class="vtmn-typo_text-3 muted">92% would recommend it</span>
+            </div>
+          </div>
+          <div class="stack gap-2" id="rating-distribution"><!-- filled by script from REVIEW_DISTRIBUTION --></div>
+        </div>
+      </div>
+
+      <div class="stack gap-4" style="flex: 999 1 520px; min-width: 0;">
+        <!-- Filters: Dropdown, Select, Toggle -->
+        <div class="row gap-4" style="align-items: flex-end;">
+          <div class="vtmn-dropdown" style="flex: 1 1 200px;">
+            <label id="filter-label">Filter by rating</label>
+            <details>
+              <summary aria-labelledby="filter-label">All ratings</summary>
+              <div class="vtmn-dropdown_items" role="group" aria-labelledby="filter-label">
+                <input type="checkbox" name="stars" id="stars-5"><label for="stars-5"><span class="vtmx-star-fill" aria-hidden="true"></span> 5 stars</label>
+                <input type="checkbox" name="stars" id="stars-4"><label for="stars-4"><span class="vtmx-star-fill" aria-hidden="true"></span> 4 stars</label>
+                <input type="checkbox" name="stars" id="stars-3"><label for="stars-3"><span class="vtmx-star-fill" aria-hidden="true"></span> 3 stars</label>
+                <input type="checkbox" name="stars" id="stars-2"><label for="stars-2"><span class="vtmx-star-fill" aria-hidden="true"></span> 2 stars and below</label>
+              </div>
+            </details>
+          </div>
+          <div class="vtmn-select_container" style="flex: 1 1 200px;">
+            <label for="sort">Sort by</label>
+            <select name="sort" id="sort">
+              <option value="recent">Most recent</option>
+              <option value="helpful">Most helpful</option>
+              <option value="high">Highest rated</option>
+              <option value="low">Lowest rated</option>
+            </select>
+          </div>
+          <div class="vtmn-toggle" style="flex: 1 1 200px; padding-bottom: var(--vtmn-spacing_3);">
+            <div class="vtmn-toggle_switch">
+              <input type="checkbox" id="verified" checked>
+              <span aria-hidden="true"></span>
+            </div>
+            <label for="verified">Verified purchases only</label>
+          </div>
+        </div>
+
+        <!-- Active filters: input chips + action chip -->
+        <div class="row gap-2">
+          <div class="vtmn-chip vtmn-chip_variant--input vtmn-chip_size--small">Comfort
+            <button class="vtmn-btn vtmn-btn--icon-alone vtmn-btn_size--small vtmn-btn_variant--ghost-reversed"><span class="vtmn-sr-only">Remove the Comfort filter</span><span class="vtmx-close-line" aria-hidden="true"></span></button>
+          </div>
+          <div class="vtmn-chip vtmn-chip_variant--input vtmn-chip_size--small">Durability
+            <button class="vtmn-btn vtmn-btn--icon-alone vtmn-btn_size--small vtmn-btn_variant--ghost-reversed"><span class="vtmn-sr-only">Remove the Durability filter</span><span class="vtmx-close-line" aria-hidden="true"></span></button>
+          </div>
+          <button class="vtmn-chip vtmn-chip_variant--action vtmn-chip_size--small"><span class="vtmx-filter-line" aria-hidden="true"></span>More filters</button>
+        </div>
+
+        <!-- Review cards -->
+        <article class="vtmn-card">
+          <div class="vtmn-card_content stack gap-2">
+            <div class="section-head">
+              <div class="vtmn-rating vtmn-rating_size--small">
+                <span class="vtmn-sr-only">5 stars out of 5</span>
+                <span class="vtmx-star-fill" role="presentation"></span><span class="vtmx-star-fill" role="presentation"></span><span class="vtmx-star-fill" role="presentation"></span><span class="vtmx-star-fill" role="presentation"></span><span class="vtmx-star-fill" role="presentation"></span>
+              </div>
+              <span class="vtmn-tag vtmn-tag_variant--decorative_cobalt vtmn-tag_size--small">Comfort</span>
+            </div>
+            <h3 class="vtmn-card_content--title">Light on long climbs</h3>
+            <span class="vtmn-card_content--body">The hip belt really carries the load. I did a full day on the ridge with water and a jacket and my shoulders were fine.</span>
+            <span class="vtmn-typo_caption-1 muted"><span class="vtmx-checkbox-circle-line" aria-hidden="true"></span> Verified purchase · Camille, October 2026</span>
+          </div>
+        </article>
+        <article class="vtmn-card">
+          <div class="vtmn-card_content stack gap-2">
+            <div class="section-head">
+              <div class="vtmn-rating vtmn-rating_size--small">
+                <span class="vtmn-sr-only">4 stars out of 5</span>
+                <span class="vtmx-star-fill" role="presentation"></span><span class="vtmx-star-fill" role="presentation"></span><span class="vtmx-star-fill" role="presentation"></span><span class="vtmx-star-fill" role="presentation"></span><span class="vtmx-star-line" role="presentation"></span>
+              </div>
+              <span class="vtmn-tag vtmn-tag_variant--decorative_saffron vtmn-tag_size--small">Durability</span>
+            </div>
+            <h3 class="vtmn-card_content--title">Solid, pockets could be bigger</h3>
+            <span class="vtmn-card_content--body">Survived a rainy weekend with everything dry inside. The front pocket is handy but a bit tight for a phone with a case.</span>
+            <span class="vtmn-typo_caption-1 muted"><span class="vtmx-checkbox-circle-line" aria-hidden="true"></span> Verified purchase · Marc, September 2026</span>
+          </div>
+        </article>
+
+        <!-- Write a review: interactive Rating + Text input + Buttons -->
+        <div class="vtmn-card">
+          <div class="vtmn-card_content stack gap-4">
+            <h3 class="vtmn-card_content--title">Bought it? Rate it</h3>
+            <div class="vtmn-rating">
+              <div class="vtmn-rating--interactive" aria-label="Rate this backpack" role="radiogroup">
+                <input type="radio" name="my-rating" value="1" id="my-rating-1"><label for="my-rating-1"><span class="vtmn-sr-only">1 star out of 5</span></label>
+                <input type="radio" name="my-rating" value="2" id="my-rating-2"><label for="my-rating-2"><span class="vtmn-sr-only">2 stars out of 5</span></label>
+                <input type="radio" name="my-rating" value="3" id="my-rating-3"><label for="my-rating-3"><span class="vtmn-sr-only">3 stars out of 5</span></label>
+                <input type="radio" name="my-rating" value="4" id="my-rating-4"><label for="my-rating-4"><span class="vtmn-sr-only">4 stars out of 5</span></label>
+                <input type="radio" name="my-rating" value="5" id="my-rating-5"><label for="my-rating-5"><span class="vtmn-sr-only">5 stars out of 5</span></label>
+              </div>
+            </div>
+            <div>
+              <label class="vtmn-text-input_label" for="review-title">Review title</label>
+              <div class="vtmn-text-input_container">
+                <input type="text" class="vtmn-text-input" id="review-title" placeholder="Sum up your experience" aria-describedby="review-title-helper">
+                <span class="vtmx-edit-line" aria-hidden="true"></span>
+              </div>
+              <p id="review-title-helper" class="vtmn-text-input_helper-text">Your review is published after moderation</p>
+            </div>
+            <div class="row gap-3">
+              <button class="vtmn-btn vtmn-btn_variant--primary">Write a review</button>
+              <button class="vtmn-btn vtmn-btn_variant--tertiary vtmn-btn--icon-left"><span class="vtmx-upload-line" aria-hidden="true"></span>Add photos</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= Related products: Cards ======================= -->
+  <section aria-labelledby="related-title" class="stack gap-5">
+    <div class="section-head">
+      <h2 id="related-title" class="vtmn-typo_title-4">Goes well with</h2>
+      <div class="row gap-2">
+        <button class="vtmn-btn vtmn-btn_variant--secondary vtmn-btn_size--small vtmn-btn--icon-alone" disabled><span class="vtmn-sr-only">Previous products</span><span class="vtmx-arrow-left-line" aria-hidden="true"></span></button>
+        <button class="vtmn-btn vtmn-btn_variant--secondary vtmn-btn_size--small vtmn-btn--icon-alone"><span class="vtmn-sr-only">Next products</span><span class="vtmx-arrow-right-line" aria-hidden="true"></span></button>
+      </div>
+    </div>
+    <div class="card-grid" id="related"><!-- filled by script from RELATED_PRODUCTS --></div>
+  </section>
+
+  <!-- ======================= Recently viewed: Skeleton + Loader ======================= -->
+  <section aria-labelledby="recent-title" aria-busy="true" class="stack gap-5">
+    <div style="display: flex; align-items: center; gap: var(--vtmn-spacing_3);">
+      <h2 id="recent-title" class="vtmn-typo_title-5">Recently viewed</h2>
+      <div class="vtmn-loader vtmn-loader_size--small"><span class="vtmn-sr-only">Loading</span></div>
+    </div>
+    <div class="card-grid" id="skeletons"><!-- filled by script --></div>
+  </section>
+
+  <!-- ======================= Newsletter ======================= -->
+  <section class="newsletter">
+    <div class="stack gap-2" style="flex: 1 1 320px;">
+      <h2 class="vtmn-typo_title-4">Hiking tips in your inbox</h2>
+      <p class="vtmn-typo_text-2 muted">Trail ideas, gear care and early access to new products, once a month.</p>
+    </div>
+    <form action="#" id="newsletter" class="stack gap-3" style="flex: 1 1 400px;">
+      <div class="row gap-3" style="align-items: flex-end;">
+        <div style="flex: 1 1 220px;">
+          <label class="vtmn-text-input_label" for="email">Email address</label>
+          <div class="vtmn-text-input_container">
+            <input type="email" class="vtmn-text-input" id="email" placeholder="you@example.com">
+            <span class="vtmx-mail-line" aria-hidden="true"></span>
+          </div>
+        </div>
+        <button type="submit" class="vtmn-btn vtmn-btn_variant--primary">Subscribe</button>
+      </div>
+      <div>
+        <input class="vtmn-checkbox" type="checkbox" id="terms">
+        <label for="terms"><span>I accept the <a href="#" class="vtmn-link">terms and conditions</a> and want to receive news about sport.</span></label>
+      </div>
+    </form>
+  </section>
+
+  <!-- ======================= Footer ======================= -->
+  <footer class="stack gap-4">
+    <div class="vtmn-divider" role="separator"></div>
+    <div class="section-head gap-5">
+      <div class="row gap-5">
+        <a href="#" class="vtmn-link vtmn-link--standalone">Help</a>
+        <a href="#" class="vtmn-link vtmn-link--standalone">Stores</a>
+        <a href="#" class="vtmn-link vtmn-link--standalone">Delivery &amp; returns</a>
+      </div>
+      <div class="row gap-2" style="align-items: center;">
+        <span class="vtmn-tag vtmn-tag_variant--decorative_gravel vtmn-tag_size--small">Hiking</span>
+        <span class="vtmn-tag vtmn-tag_variant--decorative_saffron vtmn-tag_size--small">Running</span>
+        <span class="vtmn-tag vtmn-tag_variant--decorative_cobalt vtmn-tag_size--small">Swimming</span>
+        <span class="vtmn-tag vtmn-tag_variant--decorative_amethyst vtmn-tag_size--small">Yoga</span>
+      </div>
+      <button class="vtmn-btn vtmn-btn_variant--ghost vtmn-btn_size--small vtmn-btn--icon-left" id="theme-toggle">
+        <span class="vtmx-eye-line" aria-hidden="true"></span>Dark theme
+      </button>
+    </div>
+  </footer>
+</main>
+
+<!-- ======================= Overlays: Toast · Snackbar · Alert · Modal ======================= -->
+<div role="status" id="toast" hidden>
+  <div class="vtmn-toast vtmn-toast--with-icon-info">
+    <div class="vtmn-toast_content" id="toast-text">Added to your cart</div>
+    <button class="vtmn-btn vtmn-btn_variant--ghost-reversed vtmn-btn_size--small vtmn-btn--icon-alone" data-close><span class="vtmn-sr-only">Close toast</span><span class="vtmx-close-line" aria-hidden="true"></span></button>
+  </div>
+</div>
+
+<div role="status" id="snackbar" hidden>
+  <div class="vtmn-snackbar">
+    <div class="vtmn-snackbar_content">Saved to your wishlist</div>
+    <button class="vtmn-btn vtmn-btn_variant--ghost-reversed vtmn-btn_size--small" id="undo-wish">Undo</button>
+    <button class="vtmn-btn vtmn-btn_variant--ghost-reversed vtmn-btn_size--small vtmn-btn--icon-alone" data-close><span class="vtmn-sr-only">Close snackbar</span><span class="vtmx-close-line" aria-hidden="true"></span></button>
+  </div>
+</div>
+
+<div role="alert" aria-live="assertive" id="alert" hidden>
+  <div class="vtmn-alert vtmn-alert_variant--success" tabindex="-1" aria-labelledby="alert-title" aria-describedby="alert-text">
+    <div class="vtmn-alert_content" role="document">
+      <div id="alert-title" class="vtmn-alert_content-title">You're subscribed
+        <button class="vtmn-btn vtmn-btn_variant--ghost-reversed vtmn-btn_size--small vtmn-btn--icon-alone" data-close><span class="vtmn-sr-only">Close alert</span><span class="vtmx-close-line" aria-hidden="true"></span></button>
+      </div>
+      <p id="alert-text" class="vtmn-alert_content-description">Check your inbox to confirm your email address.</p>
+    </div>
+  </div>
+</div>
+
+<div class="vtmn-modal" id="size-guide" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-desc" hidden>
+  <div class="vtmn-modal_content">
+    <div class="vtmn-modal_content_title">
+      <span id="modal-title" class="vtmn-modal_content_title--text">Find your back length</span>
+      <button class="vtmn-btn vtmn-btn_variant--ghost vtmn-btn--icon-alone" data-close><span class="vtmx-close-line" aria-hidden="true"></span><span class="vtmn-sr-only">Close size guide</span></button>
+    </div>
+    <div class="vtmn-modal_content_body">
+      <p id="modal-desc" class="vtmn-modal_content_body--text">Stand straight and measure from the bony bump at the base of your neck down to the line between the top of your hip bones.</p>
+      <ul class="vtmn-list">
+        <li class="vtmn-list_item-size--small"><div class="vtmn-list_text"><span>S/M</span><span>40 to 48 cm</span></div></li>
+        <li class="vtmn-list_item-size--small"><div class="vtmn-list_text"><span>M/L</span><span>48 to 56 cm</span></div></li>
+      </ul>
+    </div>
+    <div class="vtmn-modal_content_actions">
+      <button class="vtmn-btn vtmn-btn_variant--secondary" data-close>Close</button>
+      <button class="vtmn-btn vtmn-btn_variant--primary" id="choose-ml">Choose M/L</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ---------- Sample data (replace with real product data) ---------- */
+  const REVIEW_DISTRIBUTION = [
+    { stars: 5, pct: 72 }, { stars: 4, pct: 18 }, { stars: 3, pct: 6 }, { stars: 2, pct: 2 }, { stars: 1, pct: 2 }
+  ];
+  const RELATED_PRODUCTS = [
+    { name: 'Hiking poles, pair',       tag: 'Accessories', tagVariant: 'decorative_gravel', rating: '4.5/5', count: 312,  price: '24,99 €', priceVariant: 'default' },
+    { name: 'Insulated bottle 0.8 L',   tag: 'Hydration',   tagVariant: 'decorative_cobalt', rating: '4.7/5', count: 905,  price: '14,99 €', priceVariant: 'accent' },
+    { name: 'Waterproof hiking jacket', tag: 'Clothing',    tagVariant: 'decorative_brick',  rating: '4.4/5', count: 640,  price: '59,99 €', priceVariant: 'alert' },
+    { name: 'Mid hiking boots',         tag: 'Footwear',    tagVariant: 'decorative_gold',   rating: '4.6/5', count: 1530, price: '69,99 €', priceVariant: 'default' }
+  ];
+
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
+
+  /* ---------- Render repeated blocks ---------- */
+  $('#rating-distribution').innerHTML = REVIEW_DISTRIBUTION.map(({ stars, pct }) => `
+    <div class="vtmn-progressbar_container vtmn-progressbar_variant--linear" role="progressbar"
+         aria-labelledby="dist-${stars}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}">
+      <div class="vtmn-progressbar_label">
+        <span id="dist-${stars}">${stars} ${stars === 1 ? 'star' : 'stars'}</span>
+        <span>${pct}%</span>
+      </div>
+      <svg><line class="vtmn-progressbar_indicator" x1="0" x2="100%" y1="50%" y2="50%"
+           style="--vtmn-progressbar_progress-transform: translateX(-${100 - pct}%) scale(1);"></line></svg>
+    </div>`).join('');
+
+  $('#related').innerHTML = RELATED_PRODUCTS.map((p) => `
+    <div class="vtmn-card">
+      <div class="vtmn-card_image"><img src="assets/product-placeholder.svg" alt=""></div>
+      <div class="vtmn-card_content stack gap-2">
+        <span class="vtmn-tag vtmn-tag_variant--${p.tagVariant} vtmn-tag_size--small" style="align-self: flex-start;">${p.tag}</span>
+        <h3 class="vtmn-card_content--title">${p.name}</h3>
+        <div class="vtmn-rating vtmn-rating_size--small">
+          <span class="vtmx-star-fill" role="presentation"></span>
+          <span class="vtmn-rating_comment--primary"><span class="vtmn-sr-only">article rating</span>${p.rating}</span>
+          <span class="vtmn-rating_comment--secondary"><span class="vtmn-sr-only">number of ratings</span>(${p.count})</span>
+        </div>
+        <span class="vtmn-price vtmn-price_size--small vtmn-price_variant--${p.priceVariant}">${p.price}</span>
+      </div>
+    </div>`).join('');
+
+  $('#skeletons').innerHTML = Array.from({ length: 4 }, () => `
+    <div class="skeleton-card">
+      <span class="vtmn-skeleton"></span>
+      <div>
+        <span class="vtmn-skeleton vtmn-skeleton_line" style="width: 90%;"></span>
+        <span class="vtmn-skeleton vtmn-skeleton_line" style="width: 60%;"></span>
+        <span class="vtmn-skeleton vtmn-skeleton_line" style="width: 35%;"></span>
+      </div>
+    </div>`).join('');
+
+  /* ---------- Overlays: only one open at a time ---------- */
+  const overlays = ['toast', 'snackbar', 'alert', 'size-guide'];
+  function showOverlay(id) {
+    overlays.forEach((o) => { $('#' + o).hidden = o !== id; });
+  }
+  $$('[data-close]').forEach((btn) => btn.addEventListener('click', () => showOverlay(null)));
+
+  /* ---------- Gallery thumbnails ---------- */
+  $$('#thumbs .thumb').forEach((thumb) => thumb.addEventListener('click', () => {
+    $$('#thumbs .thumb').forEach((t) => t.removeAttribute('aria-current'));
+    thumb.setAttribute('aria-current', 'true');
+    $('#main-photo').alt = `Hiking backpack 30 L, photo ${+thumb.dataset.index + 1} of 4`;
+  }));
+
+  /* ---------- Colour chips (single choice) ---------- */
+  $$('#color-chips .vtmn-chip').forEach((chip) => chip.addEventListener('click', () => {
+    if (chip.disabled) return;
+    $$('#color-chips .vtmn-chip').forEach((c) => c.setAttribute('aria-pressed', 'false'));
+    chip.setAttribute('aria-pressed', 'true');
+    $('#color-name').textContent = chip.textContent.trim();
+  }));
+
+  /* ---------- Quantity ---------- */
+  const qtyInput = $('#qty');
+  const setQty = (n) => {
+    const q = Math.max(1, Number.isFinite(n) ? n : 1);
+    qtyInput.value = q;
+    $('#qty-dec').disabled = q <= 1;
+  };
+  $('#qty-dec').addEventListener('click', () => setQty(+qtyInput.value - 1));
+  $('#qty-inc').addEventListener('click', () => setQty(+qtyInput.value + 1));
+  qtyInput.addEventListener('change', () => setQty(parseInt(qtyInput.value, 10)));
+
+  /* ---------- Add to cart: Loader, then Toast + Badge ---------- */
+  let cartCount = 2;
+  $('#add-to-cart').addEventListener('click', () => {
+    const qty = +qtyInput.value;
+    showOverlay(null);
+    $('#add-to-cart').hidden = true;
+    $('#adding').hidden = false;
+    setTimeout(() => {
+      $('#adding').hidden = true;
+      $('#add-to-cart').hidden = false;
+      cartCount += qty;
+      $('#cart-badge').textContent = cartCount;
+      $('#toast-text').textContent = `Added to your cart · ${qty} × Hiking backpack 30 L`;
+      showOverlay('toast');
+    }, 900);
+  });
+
+  /* ---------- Wishlist: icon swap + Snackbar with Undo ---------- */
+  let wished = false;
+  function setWish(on) {
+    wished = on;
+    $('#wish-btn').setAttribute('aria-pressed', String(on));
+    $('#wish-icon').className = on ? 'vtmx-heart-fill' : 'vtmx-heart-line';
+    $('#wish-label').textContent = on ? 'Remove from wishlist' : 'Add to wishlist';
+    showOverlay(on ? 'snackbar' : null);
+  }
+  $('#wish-btn').addEventListener('click', () => setWish(!wished));
+  $('#undo-wish').addEventListener('click', () => setWish(false));
+
+  /* ---------- Size guide Modal ---------- */
+  $('#open-size-guide').addEventListener('click', (e) => { e.preventDefault(); showOverlay('size-guide'); });
+  $('#choose-ml').addEventListener('click', () => { $('#back-length').value = 'ml'; showOverlay(null); });
+
+  /* ---------- Tabs ---------- */
+  const tabs = $$('#tabs [role="tab"]');
+  function selectTab(tab) {
+    tabs.forEach((t) => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      $('#' + t.getAttribute('aria-controls')).hidden = !on;
+    });
+  }
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => selectTab(tab));
+    tab.addEventListener('keydown', (e) => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      const next = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+      selectTab(next); next.focus();
+    });
+  });
+
+  /* ---------- Newsletter: success Alert ---------- */
+  $('#newsletter').addEventListener('submit', (e) => { e.preventDefault(); showOverlay('alert'); });
+
+  /* ---------- Theme switch (Core Light / Core Dark) ---------- */
+  $('#theme-toggle').addEventListener('click', () => {
+    const dark = document.documentElement.dataset.theme !== 'dark';
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+    $('#theme-toggle').lastChild.textContent = dark ? 'Light theme' : 'Dark theme';
+  });
+</script>
+</body>
+</html>

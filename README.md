@@ -38,6 +38,18 @@ Accordion, Alert, Badge, Breadcrumb, Button, Card, Checkbox, Chip, Divider, Drop
 
 Alerts, toasts and snackbars stay open until closed (the system's default animation hides them after a few seconds).
 
+## Purple variant
+
+`purple.html` is the same page with `vitamin/themes/purple.css` loaded after the tokens and `class="vtmn-purple"` on `<html>`:
+
+- Brand colour moves from blue to the Vitamin purple scale (`purple400` light, `purple300` dark): primary buttons, brand tags, links, selected tabs and chips, focus/active borders, progress bars, information states, hover/pressed states and card shadows.
+- Page backdrop (`background-secondary`) becomes `red50`, a pale pink (`red700` in dark theme). Cards and panels stay white.
+- Accent yellow (prices, Add to cart) and the Decathlon logo are unchanged.
+
+| Original | Purple |
+|---|---|
+| ![Original page](docs/original.png) | ![Purple variant](docs/purple-variant.png) |
+
 ## Sample content
 
 Prices, ratings, review counts and reviews are sample data for the mockup. Warranty, weight and dimensions are `[PLACEHOLDERS]`. The review distribution and related products are arrays at the top of the script in `index.html`.
